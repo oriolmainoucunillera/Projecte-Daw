@@ -25,8 +25,23 @@ Route::get('/', 'HomeController@index')->name('home');
 /*Página catagoria*/
 Route::get('/categoria', 'ProductoController@categoria')->name('categoria');
 
-/*Página de detalla*/
-Route::get('/detalle', 'ProductoController@detalle')->name('detalle');
+/*Página de ofertas*/
+Route::get('/oferta', 'ProductoController@ofertas')->name('ofertas');
+
+/*Página de snows*/
+Route::get('/snows', 'ProductoController@snows')->name('snows');
+
+/*Página de esquis*/
+Route::get('/esquis', 'ProductoController@esquis')->name('esquis');
+
+/*Página de botas*/
+Route::get('/botas', 'ProductoController@botas')->name('botas');
+
+/*Página de ropa*/
+Route::get('/ropa', 'ProductoController@ropa')->name('ropa');
+
+/*Página de detalle*/
+Route::get('/detalle/{id}', 'ProductoController@detalle')->name('detalle');
 
 /*Página de administrador*/
 Route::get('/administrador', 'AdminController@administrador')->name('administrador');

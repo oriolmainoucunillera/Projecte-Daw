@@ -41,19 +41,19 @@
                             <a class="nav-link" href="categoria">Todos los productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Ofertas</a>
+                            <a class="nav-link" href="oferta">Ofertas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Snows</a>
+                            <a class="nav-link" href="snows">Snows</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Esquis</a>
+                            <a class="nav-link" href="esquis">Esquis</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Botas</a>
+                            <a class="nav-link" href="botas">Botas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Ropa</a>
+                            <a class="nav-link" href="ropa">Ropa</a>
                         </li>
                     </ul>
 
