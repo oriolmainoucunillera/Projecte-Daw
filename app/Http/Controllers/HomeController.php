@@ -15,18 +15,28 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-       // $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function index()
     {
 
         $respuesta2 = Http::get('http://127.0.0.1:8000/api/productes/nous/12');
+        $productos = $respuesta2->json();
+
+        $respuesta3 = Http::get('http://127.0.0.1:8000/api/productes/getUltimesUnitats');
+        $ultimesUnitats = $respuesta3->json();
+
+        $respuesta3 = Http::get('http://127.0.0.1:8000/api/productes/getUltimesUnitats2');
+        $ultimesUnitats2 = $respuesta3->json();
+
+        return view('home', compact('productos', 'ultimesUnitats', 'ultimesUnitats2'));
+    }
+
+    public function buscador(Request $request) {
+        $nom = $request['buscador'];
+        $respuesta2 = Http::get('http://127.0.0.1:8000/api/buscador/'. $nom);
         $productos = $respuesta2->json();
 
         return view('home', compact('productos'));

@@ -2,8 +2,9 @@
 
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class CompraController
 {
@@ -17,4 +18,16 @@ class CompraController
     {
         return view('cesta');
     }
+
+    public function comprar(Request $request) {
+        $response = Http::post('http://127.0.0.1:8000/api/comprar', [
+            'cantidad' => $request->cantidad,
+            'producte_id' => $request->producte_id,
+            'user_id' => '1',
+        ]);
+
+
+        return redirect()->route('home')->with('message', 'Compra realitzada correctament');
+    }
+
 }
