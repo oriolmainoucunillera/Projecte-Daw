@@ -10908,3 +10908,7 @@ a.text-dark:focus {
     border: none;
 }
 
+.volver {
+    text-align: end;
+}
+

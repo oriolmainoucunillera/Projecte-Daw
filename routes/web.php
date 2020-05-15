@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompraController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,7 +42,7 @@ Route::get('/botas', 'ProductoController@botas')->name('botas');
 Route::get('/ropa', 'ProductoController@ropa')->name('ropa');
 
 /*Página de detalle*/
-Route::get('/detalle/{id}', 'ProductoController@detalle')->name('detalle');
+Route::get('/detalle{id}', 'ProductoController@detalle')->name('detalle');
 
 /*Página de administrador*/
 Route::get('/administrador', 'AdminController@administrador')->name('administrador');
@@ -51,18 +52,36 @@ Route::get('/formAddProducto', 'AdminController@formAddProducto')->name('formAdd
 Route::post('/addProducto', 'AdminController@addProducto')->name('addProducto');
 
 /*Editar productos*/
-Route::get('/formEditProducto', 'AdminController@formEditProducto')->name('formEditProducto');
-Route::patch('/editProducto', 'AdminController@editProducto')->name('editProducto');
+Route::get('/formEditProducto{producto_id}', 'AdminController@formEditProducto')->name('formEditProducto');
+Route::post('/editProducto{producto_id}', 'AdminController@editProducto')->name('editProducto');
 
 /*Eliminar producto*/
-Route::post('/deleteProducto', 'AdminController@deleteProducto')->name('deleteProducto');
+Route::post('/deleteProducto/{producto_id}', 'AdminController@deleteProducto')->name('deleteProducto');
 
-/*Editar usuario*/
+/*Añadir admin*/
+Route::get('/formAddUsuario', 'AdminController@formAddUsuario')->name('formAddUsuario');
+Route::post('/addUsuario', 'AdminController@addUsuario')->name('addUsuario');
+
+
+/*Editar admin*/
 Route::get('/formEditUsuario', 'AdminController@formEditUsuario')->name('formEditUsuario');
-Route::patch('/editUsuario', 'AdminController@editUsuario')->name('editUsuario');
+Route::post('/editUsuario', 'AdminController@editUsuario')->name('editUsuario');
 
 /*Cesta compra*/
 Route::get('/cesta', 'CompraController@cesta')->name('cesta');
+Route::get('/cesta/add/{id}', 'CompraController@add')->name('addCesta');
 
+/*Buscador*/
+Route::get('/buscador', 'HomeController@buscador')->name('buscador');
 
+/*Ordenar*/
+Route::get('/ordenar_{orden}', 'ProductoController@ordenar')->name('ordenar');
 
+/*Filtro Marca*/
+Route::get('/filtroMarca{marca_id}', 'ProductoController@filtroMarca')->name('filtroMarca');
+
+/*Filtro color*/
+Route::get('/filtroColor{color_id}', 'ProductoController@filtroColor')->name('filtroColor');
+
+/*Comprar un producto*/
+Route::post('/comprar', 'CompraController@comprar')->name('comprar');

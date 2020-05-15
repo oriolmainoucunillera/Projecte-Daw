@@ -44,6 +44,10 @@ class AdminController
 
     public function addProducto(Request $request) {
 
+        $imatge = $request->file('imatge');
+        $imatge->move('images', $imatge->getClientOriginalName());
+        $request->imatge = $imatge->getClientOriginalName();
+
         $response = Http::post('http://127.0.0.1:8000/api/admin/add/producte', [
             'nom' => $request->nom,
             'marca_id' => $request->marca_id,
@@ -54,7 +58,7 @@ class AdminController
             'descripcio_curta' => $request->descripcio_curta,
             'descripcio_llarga' => $request->descripcio_llarga,
             'oferta' => $request->oferta,
-            'imatge' => 'foto1.png'
+            'imatge' => $request->imatge
         ]);
 
         return redirect('/administrador');
@@ -79,6 +83,10 @@ class AdminController
 
     public function editProducto(Request $request, $id) {
 
+        $imatge = $request->file('imatge');
+        $imatge->move('images', $imatge->getClientOriginalName());
+        $request->imatge = $imatge->getClientOriginalName();
+
         $response = Http::post('http://127.0.0.1:8000/api/admin/edit/producte'. $id, [
             'nom' => $request->nom,
             'marca_id' => $request->marca_id,
@@ -89,7 +97,7 @@ class AdminController
             'descripcio_curta' => $request->descripcio_curta,
             'descripcio_llarga' => $request->descripcio_llarga,
             'oferta' => $request->oferta,
-            //'imatge' => 'foto1.png'
+            'imatge' => $request->imatge
         ]);
 
         return redirect('/administrador');
@@ -103,7 +111,37 @@ class AdminController
 
     public function formEditUsuario()
     {
-        return view('formEditUsuario');
+        $response = Http::get('http://127.0.0.1:8000/api/allUsers');
+        $usuarios = $response->json();
+
+        return view('formEditUsuario', compact('usuarios'));
+    }
+
+    public function formAddUsuario() {
+        $response = Http::get('http://127.0.0.1:8000/api/allUsers');
+        $usuarios = $response->json();
+        return view('formAddAdmin', compact('usuarios'));
+    }
+
+    public function addUsuario(Request $request) {
+        $response = Http::post('http://127.0.0.1:8000/api/admin/addAdmin', [
+            'usuari_id' => $request->usuari_id,
+            'esAdmin' => $request->esAdmin,
+        ]);
+
+        return redirect('/administrador');
+    }
+
+    public function editUsuario(Request $request)
+    {
+        $response = Http::post('http://127.0.0.1:8000/api/admin/editAdmin', [
+            'usuari_id' => $request->usuari_id,
+            'esAdmin' => $request->esAdmin,
+        ]);
+
+        return redirect('/administrador');
+
+        return view('formEditUsuario', compact('usuarios'));
     }
 
     public function ordenar($orden) {

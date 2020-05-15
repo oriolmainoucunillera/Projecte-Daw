@@ -3,7 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-12 col-md-8"><h2>Administradors</h2></div>
+            <div class="col-12 col-md-6"><h2>Administradors</h2></div>
+            <div class="col-6 col-md-2 p-3">
+                <a href="formAddUsuario" class="btn btn-secondary">Añadir Admin</a>
+            </div>
             <div class="col-6  col-md-2 p-3">
                 <a href="formEditUsuario" class="btn btn-secondary">Editar Usuario</a>
             </div>
@@ -19,9 +22,11 @@
                     Marca
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    @if (is_array($marcas ?? ''))
+                        @foreach($marcas as $marca)
+                            <a class="dropdown-item" href="/filtroMarca{{ $marca['id'] }}">{{ $marca['nom'] }}</a>
+                        @endforeach
+                    @endif
                 </div>
             </div>
 
@@ -31,9 +36,11 @@
                     Color
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    @if (is_array($colors ?? ''))
+                        @foreach($colors as $color)
+                            <a class="dropdown-item" href="/filtroColor{{ $color['id'] }}">{{ $color['nom'] }}</a>
+                        @endforeach
+                    @endif
                 </div>
             </div>
 
@@ -43,9 +50,10 @@
                     Ordenar per
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="ordenar_preu_desc" id="preu_asc" name="preu_asc">Preu major</a>
+                    <a class="dropdown-item" href="ordenar_preu_asc" id="preu_desc" name="preu_desc">Preu menor</a>
+                    <a class="dropdown-item" href="ordenar_nom_asc" id="nom_asc" name="nom_asc">Nom A-Z</a>
+                    <a class="dropdown-item" href="ordenar_nom_desc" id="nom_asc" name="nom_asc">Nom Z-A</a>
                 </div>
             </div>
         </div>
@@ -55,7 +63,7 @@
                 <div class="col-12 col-md-6 col-lg-3 py-3">
                     <div class="row">
                         <div class="col-12">
-                            <img src="img2.jpg" class="img-fluid pb-2" alt="Responsive image">
+                            <img src="/images/{{ $producto['imatge'] }}" class="img-fluid pb-2" alt="Responsive image">
                         </div>
                         <div class="col-12">
                             <div class="row">
@@ -63,7 +71,7 @@
                                 <div class="col-12"><p>{{ $producto['descripcio_curta'] }}</p></div>
                                 <div class="col-12"><h4><b>{{ $producto['preu'] }}€</b></h4></div>
                             </div>
-                            <a class="btn btn-warning my-2 my-sm-0" href="formEditProducto">Editar</a>
+                            <a class="btn btn-warning my-2 my-sm-0" href="formEditProducto{{ $producto['id'] }}">Editar</a>
                             <a class="btn btn-danger my-2 my-sm-0 " href="#deleteModal" data-toggle="modal">Borrar</a>
                         </div>
                     </div>
@@ -77,7 +85,7 @@
                                 <h4 class="modal-title">¿Borrar producto?</h4>
                             </div>
                             <div class="modal-body">
-                                <form name="deleteProducto" id="deleteProducto" action="deleteProducto" method="post"
+                                <form name="deleteProducto" id="deleteProducto" action="deleteProducto/{{ $producto['id'] }}" method="post"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-footer">
