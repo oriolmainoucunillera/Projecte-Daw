@@ -8,7 +8,7 @@
                 <div class="col-12 col-lg-8">
 
                     <div class="row">
-                        <div class="col-12"><h1>Añadir usuario</h1></div>
+                        <div class="col-12"><h1>Añadir administrador</h1></div>
                     </div>
 
                     <div class="form-group row">
@@ -37,7 +37,7 @@
 
                     <div class="row pt-4">
                         <div class="col-6">
-                            <button class="btn btn-success">Aceptar cambios</button>
+                            <button class="btn btn-success">Añadir admin</button>
                         </div>
                         <div class="col-6 volver">
                             <a href="javascript:history.back()" class="btn btn-primary">Volver</a>

@@ -40,7 +40,7 @@
                             @if (is_array($ultimesUnitats))
                                 @foreach($ultimesUnitats as $ultimaUnitat)
                                     <div class="col-6 col-md-6 col-lg-3">
-                                        <a href="/detalle{{ $ultimaUnitat['id'] }}"><img src="{{  $ultimaUnitat['imatge'] }}" alt=""/></a>
+                                        <a href="/detalle{{ $ultimaUnitat['id'] }}"><img src="/images/{{  $ultimaUnitat['imatge'] }}" alt=""/></a>
                                     </div>
                                 @endforeach
                             @endif
@@ -51,7 +51,7 @@
                             @if (is_array($ultimesUnitats2))
                                 @foreach($ultimesUnitats2 as $ultimaUnitat2)
                                     <div class="col-6 col-md-6 col-lg-3">
-                                        <a href="/detalle{{ $ultimaUnitat2['id'] }}"><img src="{{  $ultimaUnitat2['imatge'] }}" alt=""/></a>
+                                        <a href="/detalle{{ $ultimaUnitat2['id'] }}"><img src="/images/{{  $ultimaUnitat2['imatge'] }}" alt=""/></a>
                                     </div>
                                 @endforeach
                             @endif

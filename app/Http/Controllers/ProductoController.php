@@ -31,9 +31,9 @@ class ProductoController
         return view('categoria', compact('productos','marcas', 'colors'));
     }
 
-    public function ofertas()
+    public function oferta()
     {
-        $respuesta2 = Http::get('http://127.0.0.1:8000/api/productes_oferta');
+        $respuesta2 = Http::get('http://127.0.0.1:8000/api/productes/oferta');
         $productos = $respuesta2->json();
 
         $respuesta3 = Http::get('http://127.0.0.1:8000/api/marca/all');

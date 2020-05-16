@@ -39,7 +39,7 @@ class HomeController extends Controller
         $respuesta2 = Http::get('http://127.0.0.1:8000/api/buscador/'. $nom);
         $productos = $respuesta2->json();
 
-        return view('home', compact('productos'));
+        return view('categoria', compact('productos'));
     }
 
 }

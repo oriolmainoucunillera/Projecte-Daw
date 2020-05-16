@@ -27,7 +27,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/categoria', 'ProductoController@categoria')->name('categoria');
 
 /*Página de ofertas*/
-Route::get('/oferta', 'ProductoController@ofertas')->name('ofertas');
+Route::get('/oferta', 'ProductoController@oferta')->name('oferta');
 
 /*Página de snows*/
 Route::get('/snows', 'ProductoController@snows')->name('snows');
@@ -85,3 +85,10 @@ Route::get('/filtroColor{color_id}', 'ProductoController@filtroColor')->name('fi
 
 /*Comprar un producto*/
 Route::post('/comprar', 'CompraController@comprar')->name('comprar');
+
+
+/*EventController*/
+Route::get('tasques', 'EventController@index')->name('event');
+Route::get('tasques/formulari', 'EventController@event_formulari')->name('formulari');
+Route::post('tasques/formulari/crear', 'EventController@event_form_crear')->name('form_crear');
+Route::delete('tasques/{id}', 'EventController@event_eliminar')->name('eliminar');

@@ -44,9 +44,9 @@ class AdminController
 
     public function addProducto(Request $request) {
 
-        $imatge = $request->file('imatge');
-        $imatge->move('images', $imatge->getClientOriginalName());
-        $request->imatge = $imatge->getClientOriginalName();
+            $imatge = $request->file('imatge');
+            $imatge->move('images', $imatge->getClientOriginalName());
+            $request->imatge = $imatge->getClientOriginalName();
 
         $response = Http::post('http://127.0.0.1:8000/api/admin/add/producte', [
             'nom' => $request->nom,
@@ -82,10 +82,16 @@ class AdminController
     }
 
     public function editProducto(Request $request, $id) {
+        $respuesta2 = Http::get('http://127.0.0.1:8000/api/producte'. $id);
+        $producto = $respuesta2->json();
 
-        $imatge = $request->file('imatge');
-        $imatge->move('images', $imatge->getClientOriginalName());
-        $request->imatge = $imatge->getClientOriginalName();
+        if(request('imatge')) {
+            $imatge = $request->file('imatge');
+            $imatge->move('images', $imatge->getClientOriginalName());
+            $request->imatge = $imatge->getClientOriginalName();
+        } else {
+            $request->imatge = $producto['imatge'];
+        }
 
         $response = Http::post('http://127.0.0.1:8000/api/admin/edit/producte'. $id, [
             'nom' => $request->nom,
@@ -111,10 +117,13 @@ class AdminController
 
     public function formEditUsuario()
     {
-        $response = Http::get('http://127.0.0.1:8000/api/allUsers');
-        $usuarios = $response->json();
+        $response = Http::get('http://127.0.0.1:8000/api/admin/allAdmins');
+        $admins = $response->json();
 
-        return view('formEditUsuario', compact('usuarios'));
+        $response2 = Http::get('http://127.0.0.1:8000/api/allUsers');
+        $usuarios = $response2->json();
+
+        return view('formEditUsuario', compact('admins', 'usuarios'));
     }
 
     public function formAddUsuario() {
@@ -132,7 +141,7 @@ class AdminController
         return redirect('/administrador');
     }
 
-    public function editUsuario(Request $request)
+    public function editUsuario(Request $request, $id)
     {
         $response = Http::post('http://127.0.0.1:8000/api/admin/editAdmin', [
             'usuari_id' => $request->usuari_id,

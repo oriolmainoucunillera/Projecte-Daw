@@ -3,12 +3,15 @@
 @section('content')
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-12 col-md-6"><h2>Administradors</h2></div>
+            <div class="col-12 col-md-4"><h2>Administradors</h2></div>
+            <div class="col-6 col-md-2 p-3">
+                <a href="tasques" class="btn btn-secondary">Tasques</a>
+            </div>
             <div class="col-6 col-md-2 p-3">
                 <a href="formAddUsuario" class="btn btn-secondary">Añadir Admin</a>
             </div>
             <div class="col-6  col-md-2 p-3">
-                <a href="formEditUsuario" class="btn btn-secondary">Editar Usuario</a>
+                <a href="formEditUsuario" class="btn btn-secondary">Editar Admin</a>
             </div>
             <div class="col-6 col-md-2 p-3">
                 <a href="formAddProducto" class="btn btn-secondary">Añadir Producto</a>

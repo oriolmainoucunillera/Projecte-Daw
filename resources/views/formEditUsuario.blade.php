@@ -8,17 +8,17 @@
                 <div class="col-12 col-lg-8">
 
                     <div class="row">
-                        <div class="col-12"><h1>Editar usuario</h1></div>
+                        <div class="col-12"><h1>Editar Administrador</h1></div>
                     </div>
 
                     <div class="form-group row">
 
                         <div class="col-12 col-md-6">
-                            <label for="usuari_id">Email</label>
+                            <label for="usuari_id">Administrador id</label>
                             <select id="usuari_id" name="email" class="form-control">
-                                @if (is_array($usuarios))
-                                    @foreach($usuarios as $usuario)
-                                        <option value="{{ $usuario['id'] }}" id="usuari_id" name="usuari_id">{{ $usuario['email'] }}</option>
+                                @if (is_array($admins))
+                                    @foreach($admins as $admin)
+                                        <option value="{{ $admin['id'] }}" id="usuari_id" name="usuari_id">{{ $admin['usuari_id'] }}</option>
                                     @endforeach
                                 @endif
 
@@ -29,8 +29,8 @@
                         <label for="esAdmin">¿Es administrador?</label>
                         <select id="esAdmin" name="esAdmin" class="form-control">
                             <option selected>Seleccionar</option>
-                            <option value="true" id="esAdmin" name="esAdmin">Si</option>
-                            <option value="false" id="esAdmin" name="esAdmin">No</option>
+                            <option value="1" id="esAdmin" name="esAdmin">Si</option>
+                            <option value="0" id="esAdmin" name="esAdmin">No</option>
                         </select>
                     </div>
                 </div>

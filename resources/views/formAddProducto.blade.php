@@ -14,14 +14,14 @@
 
                     <div class="form-group row">
                         <div class="col-12"><label for="titol">Nombre del producto</label>
-                            <input class="form-control" type="text" id="nom" name="nom"></div>
+                            <input class="form-control" type="text" id="nom" name="nom" required></div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="descripcio_llarga">Descripcion completa</label>
                             <textarea class="form-control" id="descripcio_llarga" name="descripcio_llarga"
-                                      rows="3"></textarea>
+                                      rows="3" required></textarea>
                         </div>
                     </div>
 
@@ -51,18 +51,18 @@
                     <div class="form-group row">
                         <div class="col-12 col-md-6">
                             <label for="descripcio_curta">Descripcion corta</label>
-                            <input class="form-control" type="text" id="descripcio_curta" name="descripcio_curta">
+                            <input class="form-control" type="text" id="descripcio_curta" name="descripcio_curta" required>
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="stock">Stock</label>
-                            <input class="form-control" type="number" id="stock" name="stock">
+                            <input class="form-control" type="number" id="stock" name="stock" required>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-12 col-md-4">
                             <label for="preu">Preu €/ud</label>
-                            <input class="form-control" type="number" id="preu" name="preu" step="any">
+                            <input class="form-control" type="number" id="preu" name="preu" step="any" required>
                         </div>
                         <div class="col-12 col-md-4">
                             <label for="oferta">Oferta</label>
@@ -84,7 +84,7 @@
                     <div class=" form-group row">
                         <div class="col-12">
                             <label for="imatge">Imagen del producte</label>
-                            <input type="file" class="form-control-file" id="imatge" name="imatge">
+                            <input type="file" class="form-control-file" id="imatge" name="imatge" required>
                         </div>
                     </div>
 
