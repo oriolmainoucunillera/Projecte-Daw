@@ -3,17 +3,17 @@
 @section('content')
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-12 col-md-4"><h2>Administradors</h2></div>
-            <div class="col-6 col-md-2 p-3">
-                <a href="tasques" class="btn btn-secondary">Tasques</a>
+            <div class="col-12 col-md-6"><h2>Administradors</h2></div>
+            <div class="p-3">
+                <a href="eventos" class="btn btn-secondary">Eventos</a>
             </div>
-            <div class="col-6 col-md-2 p-3">
+            <div class="p-3">
                 <a href="formAddUsuario" class="btn btn-secondary">Añadir Admin</a>
             </div>
-            <div class="col-6  col-md-2 p-3">
-                <a href="formEditUsuario" class="btn btn-secondary">Editar Admin</a>
+            <div class="p-3">
+                <a href="showAdmins" class="btn btn-secondary">Editar Admin</a>
             </div>
-            <div class="col-6 col-md-2 p-3">
+            <div class="p-3">
                 <a href="formAddProducto" class="btn btn-secondary">Añadir Producto</a>
             </div>
         </div>
@@ -103,76 +103,6 @@
                 </div>
 
         </div>
-        <!--
-                    <div class="col-12 col-md-6 col-lg-3 py-3">
-                        <div class="row">
-                            <div class="col-12">
-                                <img src="img2.jpg" class="img-fluid pb-2" alt="Responsive image">
-                            </div>
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12"><h3>titulo</h3></div>
-                                    <div class="col-12"><p>Descripcion cortaaa</p></div>
-                                    <div class="col-12"><h2><b>76€</b></h2></div>
-                                </div>
-                                <a class="btn btn-warning my-2 my-sm-0">Editar</a>
-                                <a class="btn btn-danger my-2 my-sm-0">Borrar</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-3 py-3">
-                        <div class="row">
-                            <div class="col-12">
-                                <img src="img2.jpg" class="img-fluid pb-2" alt="Responsive image">
-                            </div>
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12"><h3>titulo</h3></div>
-                                    <div class="col-12"><p>Descripcion cortaaa</p></div>
-                                    <div class="col-12"><h2><b>76€</b></h2></div>
-                                </div>
-                                <a class="btn btn-warning my-2 my-sm-0">Editar</a>
-                                <a class="btn btn-danger my-2 my-sm-0">Borrar</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-3 py-3">
-                        <div class="row">
-                            <div class="col-12">
-                                <img src="img2.jpg" class="img-fluid pb-2" alt="Responsive image">
-                            </div>
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12"><h3>titulo</h3></div>
-                                    <div class="col-12"><p>Descripcion cortaaa</p></div>
-                                    <div class="col-12"><h2><b>76€</b></h2></div>
-                                </div>
-                                <a class="btn btn-warning my-2 my-sm-0">Editar</a>
-                                <a class="btn btn-danger my-2 my-sm-0">Borrar</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-3 py-3">
-                        <div class="row">
-                            <div class="col-12">
-                                <img src="img2.jpg" class="img-fluid pb-2" alt="Responsive image">
-                            </div>
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12"><h3>titulo</h3></div>
-                                    <div class="col-12"><p>Descripcion cortaaa</p></div>
-                                    <div class="col-12"><h2><b>76€</b></h2></div>
-                                </div>
-                                <a class="btn btn-warning my-2 my-sm-0">Editar</a>
-                                <a class="btn btn-danger my-2 my-sm-0">Borrar</a>
-                            </div>
-                        </div>
-                    </div>
-        -->
-
     </div>
 
 @endsection

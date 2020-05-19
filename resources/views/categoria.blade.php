@@ -64,7 +64,12 @@
                                 <div class="row">
                                     <div class="col-12"><h5>{{ $producto['nom'] }}</h5></div>
                                     <div class="col-12"><p>{{ $producto['descripcio_curta'] }}</p></div>
-                                    <div class="col-12"><h4><b>{{ $producto['preu'] }}€</b></h4></div>
+                                    @if($producto['oferta'] == 0)
+                                        <div class="col-12"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
+                                    @else
+                                        <div class="col-6" style="color: red"><h4><b><strike>{{ $producto['preu'] }}€</strike></b></h4></div>
+                                        <div class="col-6"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
+                                    @endif
                                     <div class="col-12"><a class="btn btn-outline-success my-2 my-sm-0" href="detalle{{ $producto['id'] }}">Detalle</a></div>
                                 </div>
                             </div>

@@ -16,25 +16,25 @@ class EventController extends Controller
         return view('events_home', compact('events'));
     }
 
-    public function event_formulari()
+    public function evento_formulari()
     {
         return view('form_event');
     }
 
-    public function event_form_crear(Request $request)
+    public function evento_crear(Request $request)
     {
         $newEvent = new Event;
         $newEvent->titol = $request->input('titol');
         $newEvent->data_hora = $request->input('data_hora');
         $newEvent->save();
-        return redirect()->route('home')->with('crear', 'Creat correctament.');
+        return redirect()->route('eventos')->with('crear', 'Creat correctament.');
     }
 
-    public function event_eliminar($id)
+    public function evento_eliminar($id)
     {
         $event = Event::findOrFail($id);
         $event->delete();
-        return redirect()->route('home')->with('eliminar', 'Eliminat correctament.');
+        return redirect()->route('eventos')->with('eliminar', 'Eliminat correctament.');
     }
 
 }

@@ -11,17 +11,27 @@
                 <h3>{{ $producto['nom'] }}</h3>
                 <p>{{ $producto['descripcio_llarga'] }}</p>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <form action="/comprar" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <input type="number" class="form-control" id="cantidad" name="cantidad" value="1" placeholder="1">
+                                <input type="number" class="form-control" id="cantidad" name="cantidad" value="1" placeholder="1" max="{{$producto['stock']}}">
                                 <input type="hidden" class="form-control" id="producte_id" name="producte_id" value="{{$producto['id']}}">
                             </div>
-                            <button type="submit" class="btn btn-outline-success">Comprar producto</button>
+                            @if($producto['stock'] > 0)
+                                <button type="submit" class="btn btn-outline-success">Comprar producto</button>
+                            @else
+                                <button type="submit" class="btn btn-outline-success" disabled>Comprar producto</button>
+                                <p style="color: red">Producto no disponible</p>
+                            @endif
                         </form>
                     </div>
-                    <div class="col-6"><h2><b>{{ $producto['preu'] }}€/ud</b></h2></div>
+                    @if($producto['oferta'] == 0)
+                        <div class="col-8"><h2><b>{{ $producto['preuOferta'] }}€/ud</b></h2></div>
+                    @else
+                        <div class="col-4" style="color: red"><h4><b><strike>{{ $producto['preu'] }}€/ud</strike></b></h4></div>
+                        <div class="col-4"><h4><b>{{ $producto['preuOferta'] }}€/ud</b></h4></div>
+                    @endif
                 </div>
             </div>
             <div class="row p-3">

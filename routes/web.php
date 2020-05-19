@@ -64,8 +64,12 @@ Route::post('/addUsuario', 'AdminController@addUsuario')->name('addUsuario');
 
 
 /*Editar admin*/
-Route::get('/formEditUsuario', 'AdminController@formEditUsuario')->name('formEditUsuario');
-Route::post('/editUsuario', 'AdminController@editUsuario')->name('editUsuario');
+Route::get('/formEditUsuario{id}', 'AdminController@formEditUsuario')->name('formEditUsuario');
+Route::get('/showAdmins', 'AdminController@showAdmins')->name('showAdmins');
+Route::post('/editUsuario{id}', 'AdminController@editUsuario')->name('editUsuario');
+
+/*Borrar administrador*/
+Route::post('/deleteAdmin/{id}', 'AdminController@deleteAdmin')->name('deleteAdmin');
 
 /*Cesta compra*/
 Route::get('/cesta', 'CompraController@cesta')->name('cesta');
@@ -88,7 +92,11 @@ Route::post('/comprar', 'CompraController@comprar')->name('comprar');
 
 
 /*EventController*/
-Route::get('tasques', 'EventController@index')->name('event');
-Route::get('tasques/formulari', 'EventController@event_formulari')->name('formulari');
-Route::post('tasques/formulari/crear', 'EventController@event_form_crear')->name('form_crear');
-Route::delete('tasques/{id}', 'EventController@event_eliminar')->name('eliminar');
+//mostra totes les tasques
+Route::get('eventos', 'EventController@index')->name('eventos');
+//Mostra el formulari per afegir tasques
+Route::get('eventos_form', 'EventController@evento_formulari')->name('eventos_form');
+//Crear una tasca
+Route::post('evento_crear', 'EventController@evento_crear')->name('evento_crear');
+//Eliminar una tasca dterminada
+Route::post('eventos_delete{id}', 'EventController@evento_eliminar')->name('evento_eliminar');

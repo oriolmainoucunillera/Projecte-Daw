@@ -3,42 +3,41 @@
 @section('content')
 
     <div class="container">
-        <div style="text-align: center">
-            @if(session('crear'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('crear') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-            @if(session('eliminar'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('eliminar') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-        </div>
 
         <div class="justify-content-center">
-            <a href="{{route('formulari')}}" class="btn btn-primary float-right">Crear</a> <br><br>
+            <a href="eventos_form" class="btn btn-primary float-right">Crear</a> <br><br>
 
             @foreach ($events as $event)
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->titol }}</h5>
                         <p class="card-text">{{ $event->data_hora }}</p>
-                        <a href="javascript: document.getElementById('delete-{{$event->id}}').submit()" class="btn btn-danger">Eliminar</a>
-
-                        <form method="post" action="{{ route('eliminar', $event->id) }}" id="delete-{{$event->id}}">
-                            @method('delete')
-                            @csrf
-                        </form>
+                        <a href="#deleteModal" data-toggle="modal" class="btn btn-danger">Eliminar</a>
                     </div>
-                </div> <br>
+                </div>
+
             @endforeach
+
+            <div id="deleteModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">¿Borrar evento?</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form name="deleteEvento" id="deleteEvento" action="eventos_delete{{ $event->id }}" method="post"
+                                  enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar
+                                    </button>
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

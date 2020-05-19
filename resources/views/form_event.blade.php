@@ -7,11 +7,11 @@
                 <div class="card-header">
                     <h3>
                         Afegir tasca
-                        <a class="float-right btn btn-success" href="{{route('home')}}">Tornar</a>
+                        <a class="float-right btn btn-success" href="{{route('eventos')}}">Tornar</a>
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('form_crear')}}" method="POST">
+                    <form action="{{route('evento_crear')}}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>Tasca</label>
