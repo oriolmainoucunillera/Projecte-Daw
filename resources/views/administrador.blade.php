@@ -62,6 +62,7 @@
         </div>
         <hr>
         <div class="row">
+            @if (is_array($productos ?? ''))
             @foreach($productos as $producto)
                 <div class="col-12 col-md-6 col-lg-3 py-3">
                     <div class="row">
@@ -72,7 +73,12 @@
                             <div class="row">
                                 <div class="col-12"><h5>{{ $producto['nom'] }}</h5></div>
                                 <div class="col-12"><p>{{ $producto['descripcio_curta'] }}</p></div>
-                                <div class="col-12"><h4><b>{{ $producto['preu'] }}€</b></h4></div>
+                                @if($producto['oferta'] == 0)
+                                    <div class="col-12"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
+                                @else
+                                    <div class="col-6" style="color: red"><h4><b><strike>{{ $producto['preu'] }}€</strike></b></h4></div>
+                                    <div class="col-6"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
+                                @endif
                             </div>
                             <a class="btn btn-warning my-2 my-sm-0" href="formEditProducto{{ $producto['id'] }}">Editar</a>
                             <a class="btn btn-danger my-2 my-sm-0 " href="#deleteModal" data-toggle="modal">Borrar</a>
@@ -80,12 +86,14 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
 
                 <div id="deleteModal" class="modal fade">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title">¿Borrar producto?</h4>
+                                <p>Id: {{ $producto['id'] }}</p>
                             </div>
                             <div class="modal-body">
                                 <form name="deleteProducto" id="deleteProducto" action="deleteProducto/{{ $producto['id'] }}" method="post"

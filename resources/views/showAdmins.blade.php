@@ -13,6 +13,7 @@
                 </div>
 
                 <div class="row">
+                    @if(is_array($admins ?? ''))
                     @foreach($admins as $admin)
                         <div class="col-12 col-md-6 col-lg-6 p-3">
                             <div class="row">
@@ -31,6 +32,7 @@
                             </div>
                         </div>
                     @endforeach
+                    @endif
 
                     <div id="deleteModal" class="modal fade">
                         <div class="modal-dialog">

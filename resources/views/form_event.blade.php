@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <h3>
                         Afegir tasca
-                        <a class="float-right btn btn-success" href="{{route('eventos')}}">Tornar</a>
+                        <a class="float-right btn btn-primary" href="{{route('eventos')}}">Tornar</a>
                     </h3>
                 </div>
                 <div class="card-body">
@@ -21,7 +21,7 @@
                             <label>Data</label>
                             <input type="datetime-local" class="form-control" name="data_hora">
                         </div>
-                        <button type="submit" class="btn btn-primary">Crear</button>
+                        <button type="submit" class="btn btn-success">Crear</button>
                     </form>
                 </div>
             </div>

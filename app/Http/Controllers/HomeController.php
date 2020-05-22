@@ -16,19 +16,36 @@ class HomeController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
+        /*
+        if(!$_COOKIE["token"]) {
+            SetCookie("token", "");
+        }
+*/
     }
 
 
     public function index()
     {
-
-        $respuesta2 = Http::get('http://127.0.0.1:8000/api/productes/nous/12');
+        $url = $_ENV['API_URL'];
+        $respuesta2 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'productes/nous/12');
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::get('http://127.0.0.1:8000/api/productes/getUltimesUnitats');
+        $respuesta3 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'productes/getUltimesUnitats');
         $ultimesUnitats = $respuesta3->json();
 
-        $respuesta3 = Http::get('http://127.0.0.1:8000/api/productes/getUltimesUnitats2');
+        $respuesta3 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'productes/getUltimesUnitats2');
         $ultimesUnitats2 = $respuesta3->json();
 
         return view('home', compact('productos', 'ultimesUnitats', 'ultimesUnitats2'));
@@ -36,7 +53,12 @@ class HomeController extends Controller
 
     public function buscador(Request $request) {
         $nom = $request['buscador'];
-        $respuesta2 = Http::get('http://127.0.0.1:8000/api/buscador/'. $nom);
+        $url = $_ENV['API_URL'];
+        $respuesta2 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'buscador/'. $nom);
         $productos = $respuesta2->json();
 
         return view('categoria', compact('productos'));

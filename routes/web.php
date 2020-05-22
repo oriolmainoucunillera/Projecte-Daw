@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CestaController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+
+/*Auth User*/
+//Vista del login
+Route::get('login1', 'UserController@login1');
+//Envia el request del formulario para hacer login
+Route::post('api_login', 'UserController@api_login');
+//Vista del registro
+Route::get('register1', 'UserController@register1');
+//Envia el request del registro para hacer login
+Route::post('api_register', 'UserController@api_register');
+//Hacer logout
+Route::get('api_logout', 'UserController@api_logout');
+//Ver usuario
+Route::get('api_user', 'UserController@api_user');
 
 /*Home*/
 Route::get('/', 'HomeController@index')->name('home');
@@ -93,10 +106,17 @@ Route::post('/comprar', 'CompraController@comprar')->name('comprar');
 
 /*EventController*/
 //mostra totes les tasques
-Route::get('eventos', 'EventController@index')->name('eventos');
+Route::get('/eventos', 'EventController@index')->name('eventos');
 //Mostra el formulari per afegir tasques
-Route::get('eventos_form', 'EventController@evento_formulari')->name('eventos_form');
+Route::get('/eventos_form', 'EventController@evento_formulari')->name('eventos_form');
 //Crear una tasca
-Route::post('evento_crear', 'EventController@evento_crear')->name('evento_crear');
+Route::post('/evento_crear', 'EventController@evento_crear')->name('evento_crear');
 //Eliminar una tasca dterminada
-Route::post('eventos_delete{id}', 'EventController@evento_eliminar')->name('evento_eliminar');
+Route::post('/eventos_delete/{id}', 'EventController@evento_eliminar')->name('evento_eliminar');
+
+/*CestaController*/
+//Devolver todos los productos de la cesta
+Route::get('/cesta', 'CestaController@getAll')->name('cesta');
+Route::post('/afegirCarrito', 'CestaController@afegirCarrito')->name('afegirCarrito');
+Route::post('/borrarProductoCarrito/{id}', 'CestaController@borrarProducto')->name('borrarProducto');
+Route::post('/realizarCompra', 'ComandaController@realizarCompra')->name('realizarCompra');

@@ -6,13 +6,26 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class EventController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('auth');
+    }
 
     public function index()
     {
-        $events = Event::orderBy('data_hora', 'asc')->get();
+        $url = $_ENV['API_URL'];
+
+        $respuesta3 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'eventos');
+        $events = $respuesta3->json();
+
         return view('events_home', compact('events'));
     }
 
@@ -23,17 +36,28 @@ class EventController extends Controller
 
     public function evento_crear(Request $request)
     {
-        $newEvent = new Event;
-        $newEvent->titol = $request->input('titol');
-        $newEvent->data_hora = $request->input('data_hora');
-        $newEvent->save();
+        $url = $_ENV['API_URL'];
+
+        $respuesta3 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->post($url . 'evento_crear', [
+                'titol' => $request->titol,
+                'data_hora' => $request->data_hora,
+            ]);
         return redirect()->route('eventos')->with('crear', 'Creat correctament.');
     }
 
     public function evento_eliminar($id)
     {
-        $event = Event::findOrFail($id);
-        $event->delete();
+        $url = $_ENV['API_URL'];
+
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->post($url . 'eventos_delete/'. $id);
         return redirect()->route('eventos')->with('eliminar', 'Eliminat correctament.');
     }
 

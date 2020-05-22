@@ -16,13 +16,26 @@ class AdminController
 
     public function administrador()
     {
-        $respuesta2 = Http::get('http://127.0.0.1:8000/api/admin/allProductes');
+        $url = $_ENV['API_URL'];
+        $respuesta2 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'admin/allProductes');
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::get('http://127.0.0.1:8000/api/marca/all');
+        $respuesta3 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::get('http://127.0.0.1:8000/api/color/all');
+        $respuesta5 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'color/all');
         $colors = $respuesta5->json();
 
         return view('administrador', compact('productos', 'marcas', 'colors'));
@@ -30,19 +43,35 @@ class AdminController
 
     public function formAddProducto()
     {
-        $respuesta2 = Http::get('http://127.0.0.1:8000/api/categoria/all');
+        $url = $_ENV['API_URL'];
+
+        $respuesta2 = Http::
+        withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'categoria/all');
         $categorias = $respuesta2->json();
 
-        $respuesta2 = Http::get('http://127.0.0.1:8000/api/marca/all');
+        $respuesta2 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'marca/all');
         $marcas = $respuesta2->json();
 
-        $respuesta5 = Http::get('http://127.0.0.1:8000/api/color/all');
+        $respuesta5 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'color/all');
         $colors = $respuesta5->json();
 
         return view('formAddProducto', compact('categorias', 'marcas', 'colors'));
     }
 
     public function addProducto(Request $request) {
+            $url = $_ENV['API_URL'];
 
             $imatge = $request->file('imatge');
             $imatge->move('images', $imatge->getClientOriginalName());
@@ -50,7 +79,11 @@ class AdminController
 
             $preuOferta = $request->preu - ($request->preu * ($request->oferta / 100));
 
-        $response = Http::post('http://127.0.0.1:8000/api/admin/add/producte', [
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->post($url . 'admin/add/producte', [
             'nom' => $request->nom,
             'marca_id' => $request->marca_id,
             'stock' => $request->stock,
@@ -69,23 +102,47 @@ class AdminController
 
     public function formEditProducto($id)
     {
-        $respuesta2 = Http::get('http://127.0.0.1:8000/api/producte'. $id);
+        $url = $_ENV['API_URL'];
+
+        $respuesta2 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'producte'. $id);
         $producto = $respuesta2->json();
 
-        $respuesta3 = Http::get('http://127.0.0.1:8000/api/categoria/all');
+        $respuesta3 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'categoria/all');
         $categorias = $respuesta3->json();
 
-        $respuesta4 = Http::get('http://127.0.0.1:8000/api/marca/all');
+        $respuesta4 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'marca/all');
         $marcas = $respuesta4->json();
 
-        $respuesta5 = Http::get('http://127.0.0.1:8000/api/color/all');
+        $respuesta5 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'color/all');
         $colors = $respuesta5->json();
 
         return view('formEditProducto', compact('producto', 'categorias', 'marcas', 'colors'));
     }
 
     public function editProducto(Request $request, $id) {
-        $respuesta2 = Http::get('http://127.0.0.1:8000/api/producte'. $id);
+        $url = $_ENV['API_URL'];
+
+        $respuesta2 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'producte'. $id);
         $producto = $respuesta2->json();
 
         if(request('imatge')) {
@@ -98,7 +155,11 @@ class AdminController
 
         $preuOferta = $request->preu - ($request->preu * ($request->oferta / 100));
 
-        $response = Http::post('http://127.0.0.1:8000/api/admin/edit/producte'. $id, [
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->post($url . 'admin/edit/producte'. $id, [
             'nom' => $request->nom,
             'marca_id' => $request->marca_id,
             'stock' => $request->stock,
@@ -117,27 +178,53 @@ class AdminController
 
     public function deleteProducto($id)
     {
-        $response = Http::post('http://127.0.0.1:8000/api/admin/delete/producte/'. $id);
+        $url = $_ENV['API_URL'];
+
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->post($url . 'admin/delete/producte/'. $id);
         return redirect("/administrador");
     }
 
     public function formEditUsuario($id)
     {
+        $url = $_ENV['API_URL'];
 
-        $response = Http::get('http://127.0.0.1:8000/api/admin/admin'.$id);
+
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'admin/admin'.$id);
         $admin = $response->json();
 
         return view('formEditUsuario', compact('admin'));
     }
 
-    public function formAddUsuario() {
-        $response = Http::get('http://127.0.0.1:8000/api/allUsers');
+    public function formAddUsuario()
+    {
+        $url = $_ENV['API_URL'];
+
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'allUsers');
         $usuarios = $response->json();
         return view('formAddAdmin', compact('usuarios'));
     }
 
-    public function addUsuario(Request $request) {
-        $response = Http::post('http://127.0.0.1:8000/api/admin/addAdmin', [
+    public function addUsuario(Request $request)
+    {
+        $url = $_ENV['API_URL'];
+
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->post($url . 'admin/addAdmin', [
             'usuari_id' => $request->usuari_id,
             'esAdmin' => $request->esAdmin,
         ]);
@@ -145,8 +232,15 @@ class AdminController
         return redirect('/administrador');
     }
 
-    public function showAdmins() {
-        $response = Http::get('http://127.0.0.1:8000/api/admin/allAdmins');
+    public function showAdmins()
+    {
+        $url = $_ENV['API_URL'];
+
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'admin/allAdmins');
         $admins = $response->json();
 
         return view('showAdmins', compact('admins'));
@@ -154,8 +248,13 @@ class AdminController
 
     public function editUsuario(Request $request, $id)
     {
+        $url = $_ENV['API_URL'];
 
-        $response = Http::post('http://127.0.0.1:8000/api/admin/editAdmin' .$id, [
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->post($url . 'admin/editAdmin' .$id, [
             'usuari_id' => $request->usuari_id,
             'esAdmin' => $request->esAdmin,
         ]);
@@ -163,43 +262,94 @@ class AdminController
         return redirect('/administrador');
     }
 
-    public function deleteAdmin($id) {
-        $response = Http::post('http://127.0.0.1:8000/api/admin/delete/administrador/'.$id);
+    public function deleteAdmin($id)
+    {
+        $url = $_ENV['API_URL'];
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->post($url . 'admin/delete/administrador/'.$id);
         return redirect("/showAdmins");
     }
 
-    public function ordenar($orden) {
-        $respuesta2 = Http::get('http://127.0.0.1:8000/api/ordenar/'.$orden);
+    public function ordenar($orden)
+    {
+        $url = $_ENV['API_URL'];
+
+        $respuesta2 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'ordenar/'.$orden);
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::get('http://127.0.0.1:8000/api/marca/all');
+        $respuesta3 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::get('http://127.0.0.1:8000/api/color/all');
+        $respuesta5 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'color/all');
         $colors = $respuesta5->json();
         return view('administrador', compact('productos', 'marcas', 'colors'));
     }
 
-    public function filtroMarca($marca_id) {
-        $respuesta2 = Http::get('http://127.0.0.1:8000/api/marca'.$marca_id);
+    public function filtroMarca($marca_id)
+    {
+        $url = $_ENV['API_URL'];
+
+        $respuesta2 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'marca'.$marca_id);
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::get('http://127.0.0.1:8000/api/marca/all');
+        $respuesta3 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::get('http://127.0.0.1:8000/api/color/all');
+        $respuesta5 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'color/all');
         $colors = $respuesta5->json();
         return view('administrador', compact('productos', 'marcas', 'colors'));
     }
 
-    public function filtroColor($color_id) {
-        $respuesta2 = Http::get('http://127.0.0.1:8000/api/color'.$color_id);
+    public function filtroColor($color_id)
+    {
+        $url = $_ENV['API_URL'];
+
+        $respuesta2 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'color'.$color_id);
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::get('http://127.0.0.1:8000/api/marca/all');
+        $respuesta3 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::get('http://127.0.0.1:8000/api/color/all');
+        $respuesta5 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'color/all');
         $colors = $respuesta5->json();
         return view('administrador', compact('productos', 'colors', 'marcas'));
     }

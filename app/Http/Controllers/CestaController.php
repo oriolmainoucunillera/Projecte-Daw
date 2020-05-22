@@ -1,0 +1,101 @@
+<?php
+
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Ramsey\Uuid\Generator\RandomBytesGenerator;
+
+class CestaController extends Controller
+{
+    public function __construct()
+    {
+        // $this->middleware('auth');
+    }
+
+    public function getAll()
+    {
+        $url = $_ENV['API_URL'];
+
+        $respuesta2 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'cistells/all');
+        $productos = $respuesta2->json();
+
+        $preuTotal = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'preuCistella');
+
+        return view('cesta', compact('productos', 'preuTotal'));
+    }
+
+    public function random()
+    {
+        $random = random_int(0, 100000);
+        return $random;
+    }
+
+    public function afegirCarrito(Request $request)
+    {
+
+        $url = $_ENV['API_URL'];
+
+        $nElementos = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'elementsCistella');
+        $nElementos2 = $nElementos->json();
+
+        $identificador = null;
+        if ($nElementos2 == 0) {
+            $variableRandom = $this->random();
+            $identificador = $variableRandom;
+        } else {
+            $consulta = Http::withToken($_COOKIE["token"])
+                ->withHeaders([
+                    'Content-Type' => 'application/json',
+                    'X-Requested-With' => 'XMLHttpRequest'
+                ])->get($url . 'getCistellaId');
+            $identificador = $consulta->json();
+        }
+
+        $preuFinal = $request->cantidad * $request->preuOferta;
+        $user_id = auth()->id();
+
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->post($url . 'afegirCarrito', [
+                'cistella_id' => $identificador,
+                //'user_id' => auth()->id(),
+                'user_id' => 1,
+                'producte_id' => $request->producte_id,
+                'preu' => $request->preuOferta,
+                'quantitat' => $request->cantidad,
+                'preu_final' => $preuFinal
+            ]);
+
+        return redirect()->route('home')->with('message', 'Producte afegit correctament');
+    }
+
+    public function borrarProducto($id)
+    {
+        $url = $_ENV['API_URL'];
+
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->post($url . 'eliminarProductoCarrito/' . $id);
+        return redirect()->route('cesta');
+    }
+
+}

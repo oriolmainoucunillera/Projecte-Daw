@@ -12,16 +12,18 @@
                 <p>{{ $producto['descripcio_llarga'] }}</p>
                 <div class="row">
                     <div class="col-4">
-                        <form action="/comprar" method="post" enctype="multipart/form-data">
+                        <!--<form action="/comprar" method="post" enctype="multipart/form-data">-->
+                        <form action="/afegirCarrito" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="number" class="form-control" id="cantidad" name="cantidad" value="1" placeholder="1" max="{{$producto['stock']}}">
                                 <input type="hidden" class="form-control" id="producte_id" name="producte_id" value="{{$producto['id']}}">
+                                <input type="hidden" class="form-control" id="preuOferta" name="preuOferta" value="{{$producto['preuOferta']}}">
                             </div>
                             @if($producto['stock'] > 0)
-                                <button type="submit" class="btn btn-outline-success">Comprar producto</button>
+                                <button type="submit" class="btn btn-outline-success">Añadir al carrito</button>
                             @else
-                                <button type="submit" class="btn btn-outline-success" disabled>Comprar producto</button>
+                                <button type="submit" class="btn btn-outline-success" disabled>Añadir al carrito</button>
                                 <p style="color: red">Producto no disponible</p>
                             @endif
                         </form>

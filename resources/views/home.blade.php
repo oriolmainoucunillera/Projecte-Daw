@@ -6,7 +6,7 @@
             <div class="col-12"><h3><b>Lo último</b></h3></div>
         </div>
         <div class="row">
-            @if (is_array($productos))
+            @if (is_array($productos ?? ''))
                 @foreach($productos as $producto)
                     <div class="col-12 col-md-6 col-lg-3 py-3">
                         <div class="row">
@@ -41,7 +41,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row  carousel-class">
-                            @if (is_array($ultimesUnitats))
+                            @if (is_array($ultimesUnitats ?? ''))
                                 @foreach($ultimesUnitats as $ultimaUnitat)
                                     <div class="col-6 col-md-6 col-lg-3">
                                         <a href="/detalle{{ $ultimaUnitat['id'] }}"><img src="/images/{{  $ultimaUnitat['imatge'] }}" alt=""/></a>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="row carousel-class">
-                            @if (is_array($ultimesUnitats2))
+                            @if (is_array($ultimesUnitats2 ?? ''))
                                 @foreach($ultimesUnitats2 as $ultimaUnitat2)
                                     <div class="col-6 col-md-6 col-lg-3">
                                         <a href="/detalle{{ $ultimaUnitat2['id'] }}"><img src="/images/{{  $ultimaUnitat2['imatge'] }}" alt=""/></a>
