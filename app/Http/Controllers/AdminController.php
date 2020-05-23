@@ -228,7 +228,7 @@ class AdminController
 
         return redirect('/administrador');
     }
-    
+
     public function ordenar($orden)
     {
         $url = $_ENV['API_URL'];
