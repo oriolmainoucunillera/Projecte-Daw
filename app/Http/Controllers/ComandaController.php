@@ -26,7 +26,7 @@ class comandaController extends Controller
                     'X-Requested-With' => 'XMLHttpRequest'
                 ])->post($url .'afegirComanda', [
                     'cistella_id' => $producto['cistella_id'],
-                    'user_id' => 1,
+                    'user_id' => $producto['user_id'],
                     'producte_id' => $producto['producte_id'],
                     'preu' => $producto['preu'],
                     'quantitat' => $producto['quantitat'],

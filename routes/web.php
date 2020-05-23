@@ -57,6 +57,9 @@ Route::get('/ropa', 'ProductoController@ropa')->name('ropa');
 /*Página de detalle*/
 Route::get('/detalle{id}', 'ProductoController@detalle')->name('detalle');
 
+/*Página de detalle del administrador*/
+Route::get('/adminDetalle{id}', 'AdminController@adminDetalle')->name('adminDetalle');
+
 /*Página de administrador*/
 Route::get('/administrador', 'AdminController@administrador')->name('administrador');
 
@@ -117,6 +120,13 @@ Route::post('/eventos_delete/{id}', 'EventController@evento_eliminar')->name('ev
 /*CestaController*/
 //Devolver todos los productos de la cesta
 Route::get('/cesta', 'CestaController@getAll')->name('cesta');
+//Añadir producto a la cesta
 Route::post('/afegirCarrito', 'CestaController@afegirCarrito')->name('afegirCarrito');
+//Borrar producto de la cesta
 Route::post('/borrarProductoCarrito/{id}', 'CestaController@borrarProducto')->name('borrarProducto');
+//Devolver un producto de la cesta
+Route::get('/cestaDetalle{id}', 'CestaController@cestaDetalle')->name('cestaDetalle');
+
+/*ComandaController*/
+//Realizar compra
 Route::post('/realizarCompra', 'ComandaController@realizarCompra')->name('realizarCompra');

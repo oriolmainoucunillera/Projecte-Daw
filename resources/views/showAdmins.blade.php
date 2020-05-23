@@ -39,6 +39,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">¿Borrar administrador?</h4>
+                                    <p>Id: {{ $admin['id'] }}</p>
                                 </div>
                                 <div class="modal-body">
                                     <form name="deleteAdministrador" id="deleteAdministrador"

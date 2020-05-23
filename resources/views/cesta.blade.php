@@ -17,32 +17,9 @@
                         <td>{{$producto['preu']}}</td>
                         <td>{{$producto['quantitat']}}</td>
                         <td>{{$producto['preu_final']}}</td>
-                        <td><a href="#deleteModal" data-toggle="modal"><img class="papelera" src="papelera.png"></a>
+                        <td><a href="cestaDetalle{{ $producto['id'] }}"><img class="papelera" src="papelera.png"></a>
                         </td>
                     </tr>
-
-                    <div id="deleteModal" class="modal fade">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">¿Borrar producto?</h4>
-                                    <p>Id: {{ $producto['id'] }}</p>
-                                </div>
-                                <div class="modal-body">
-                                    <form name="deleteProducto" id="deleteProducto"
-                                          action="/borrarProductoCarrito/{{$producto['id']}}" method="post"
-                                          enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar
-                                            </button>
-                                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 @endforeach
             @endif
 

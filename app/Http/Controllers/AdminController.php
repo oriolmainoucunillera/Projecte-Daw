@@ -41,6 +41,19 @@ class AdminController
         return view('administrador', compact('productos', 'marcas', 'colors'));
     }
 
+    public function adminDetalle($id) {
+        $url = $_ENV['API_URL'];
+
+        $respuesta2 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'producte'.$id);
+
+        $producto = $respuesta2->json();
+        return view('adminDetalle', compact('producto'));
+    }
+
     public function formAddProducto()
     {
         $url = $_ENV['API_URL'];

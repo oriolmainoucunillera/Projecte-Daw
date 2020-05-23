@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12"><h3><b>Lo último</b></h3></div>
+            <div class="col-12"><h3><b>Lo más nuevo</b></h3></div>
         </div>
         <div class="row">
             @if (is_array($productos ?? ''))
@@ -34,7 +34,7 @@
 
         <hr>
         <div class="row">
-            <div class="col-9"><h3><b>Ultimas unidades</b></h3></div>
+            <div class="col-9"><h3><b>Últimas unidades</b></h3></div>
         </div>
         <div class="row">
             <div id="carouselExampleControls" class="carousel slide w-100" data-ride="carousel">

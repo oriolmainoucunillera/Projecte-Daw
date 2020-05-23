@@ -55,7 +55,13 @@ class UserController extends Controller
     }
 
     public function api_user() {
-
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get('http://127.0.0.1:8000/api/auth/user');
+        $user = $response->json();
+        return $user;
     }
 
 }

@@ -80,35 +80,13 @@
                                     <div class="col-6"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
                                 @endif
                             </div>
+                            <a class="btn btn-outline-success my-2 my-sm-0" href="adminDetalle{{ $producto['id'] }}">Detalle</a>
                             <a class="btn btn-warning my-2 my-sm-0" href="formEditProducto{{ $producto['id'] }}">Editar</a>
-                            <a class="btn btn-danger my-2 my-sm-0 " href="#deleteModal" data-toggle="modal">Borrar</a>
                         </div>
                     </div>
                 </div>
                 @endforeach
                 @endif
-
-                <div id="deleteModal" class="modal fade">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">¿Borrar producto?</h4>
-                                <p>Id: {{ $producto['id'] }}</p>
-                            </div>
-                            <div class="modal-body">
-                                <form name="deleteProducto" id="deleteProducto" action="deleteProducto/{{ $producto['id'] }}" method="post"
-                                      enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar
-                                        </button>
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
         </div>
     </div>
