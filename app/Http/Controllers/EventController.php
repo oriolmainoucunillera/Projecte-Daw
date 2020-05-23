@@ -61,4 +61,17 @@ class EventController extends Controller
         return redirect()->route('eventos')->with('eliminar', 'Eliminat correctament.');
     }
 
+    public function eventoDetalle($id) {
+        $url = $_ENV['API_URL'];
+
+        $respuesta3 = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($url . 'eventoDetalle' . $id);
+        $event = $respuesta3->json();
+
+        return view('detalleEvento', compact('event'));
+    }
+
 }

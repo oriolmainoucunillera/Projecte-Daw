@@ -116,6 +116,8 @@ Route::get('/eventos_form', 'EventController@evento_formulari')->name('eventos_f
 Route::post('/evento_crear', 'EventController@evento_crear')->name('evento_crear');
 //Eliminar una tasca dterminada
 Route::post('/eventos_delete/{id}', 'EventController@evento_eliminar')->name('evento_eliminar');
+//Detalle de un evento
+Route::get('eventoDetalle{id}', 'EventController@eventoDetalle')->name('eventoDetalle');
 
 /*CestaController*/
 //Devolver todos los productos de la cesta
