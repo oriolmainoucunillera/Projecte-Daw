@@ -74,18 +74,10 @@ Route::post('/editProducto{producto_id}', 'AdminController@editProducto')->name(
 /*Eliminar producto*/
 Route::post('/deleteProducto/{producto_id}', 'AdminController@deleteProducto')->name('deleteProducto');
 
-/*Añadir admin*/
+/*Administrar administradores*/
 Route::get('/formAddUsuario', 'AdminController@formAddUsuario')->name('formAddUsuario');
-Route::post('/addUsuario', 'AdminController@addUsuario')->name('addUsuario');
+Route::post('/administrarAdmin', 'AdminController@administrarAdmins')->name('administrarAdmins');
 
-
-/*Editar admin*/
-Route::get('/formEditUsuario{id}', 'AdminController@formEditUsuario')->name('formEditUsuario');
-Route::get('/showAdmins', 'AdminController@showAdmins')->name('showAdmins');
-Route::post('/editUsuario{id}', 'AdminController@editUsuario')->name('editUsuario');
-
-/*Borrar administrador*/
-Route::post('/deleteAdmin/{id}', 'AdminController@deleteAdmin')->name('deleteAdmin');
 
 /*Cesta compra*/
 Route::get('/cesta', 'CompraController@cesta')->name('cesta');

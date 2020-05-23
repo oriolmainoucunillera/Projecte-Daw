@@ -2,23 +2,23 @@
 
 @section('content')
     <div class="container">
-        <form action="addUsuario" enctype="multipart/form-data" method="post">
+        <form action="administrarAdmin" enctype="multipart/form-data" method="post">
             @csrf
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
 
                     <div class="row">
-                        <div class="col-12"><h1>Añadir administrador</h1></div>
+                        <div class="col-12"><h1>Administrar administrador</h1></div>
                     </div>
 
                     <div class="form-group row">
 
                         <div class="col-12 col-md-6">
-                            <label for="usuari_id">Email</label>
-                            <select id="usuari_id" name="usuari_id" class="form-control">
+                            <label for="id">Email</label>
+                            <select id="id" name="id" class="form-control">
                                 @if (is_array($usuarios))
                                     @foreach($usuarios as $usuario)
-                                        <option value="{{ $usuario['id'] }}" id="usuari_id" name="usuari_id">{{ $usuario['email'] }}</option>
+                                        <option value="{{ $usuario['id'] }}" id="id" name="id">{{ $usuario['email'] }}</option>
                                     @endforeach
                                 @endif
 
@@ -37,7 +37,7 @@
 
                     <div class="row pt-4">
                         <div class="col-6">
-                            <button class="btn btn-success">Añadir admin</button>
+                            <button class="btn btn-success">Editar admin</button>
                         </div>
                         <div class="col-6 volver">
                             <a href="javascript:history.back()" class="btn btn-primary">Volver</a>

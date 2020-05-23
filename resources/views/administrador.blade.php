@@ -8,10 +8,7 @@
                 <a href="eventos" class="btn btn-secondary">Eventos</a>
             </div>
             <div class="p-3">
-                <a href="formAddUsuario" class="btn btn-secondary">Añadir Admin</a>
-            </div>
-            <div class="p-3">
-                <a href="showAdmins" class="btn btn-secondary">Editar Admin</a>
+                <a href="formAddUsuario" class="btn btn-secondary">Administrar Admin</a>
             </div>
             <div class="p-3">
                 <a href="formAddProducto" class="btn btn-secondary">Añadir Producto</a>

@@ -201,21 +201,6 @@ class AdminController
         return redirect("/administrador");
     }
 
-    public function formEditUsuario($id)
-    {
-        $url = $_ENV['API_URL'];
-
-
-        $response = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
-                'Content-Type' => 'application/json',
-                'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'admin/admin'.$id);
-        $admin = $response->json();
-
-        return view('formEditUsuario', compact('admin'));
-    }
-
     public function formAddUsuario()
     {
         $url = $_ENV['API_URL'];
@@ -229,63 +214,21 @@ class AdminController
         return view('formAddAdmin', compact('usuarios'));
     }
 
-    public function addUsuario(Request $request)
-    {
+    public function administrarAdmins(Request $request) {
         $url = $_ENV['API_URL'];
 
         $response = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->post($url . 'admin/addAdmin', [
-            'usuari_id' => $request->usuari_id,
-            'esAdmin' => $request->esAdmin,
-        ]);
+            ])->post($url . 'admin/administrarAdmin', [
+                'id' => $request->id,
+                'esAdmin' => $request->esAdmin,
+            ]);
 
         return redirect('/administrador');
     }
-
-    public function showAdmins()
-    {
-        $url = $_ENV['API_URL'];
-
-        $response = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
-                'Content-Type' => 'application/json',
-                'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'admin/allAdmins');
-        $admins = $response->json();
-
-        return view('showAdmins', compact('admins'));
-    }
-
-    public function editUsuario(Request $request, $id)
-    {
-        $url = $_ENV['API_URL'];
-
-        $response = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
-                'Content-Type' => 'application/json',
-                'X-Requested-With' => 'XMLHttpRequest'
-            ])->post($url . 'admin/editAdmin' .$id, [
-            'usuari_id' => $request->usuari_id,
-            'esAdmin' => $request->esAdmin,
-        ]);
-
-        return redirect('/administrador');
-    }
-
-    public function deleteAdmin($id)
-    {
-        $url = $_ENV['API_URL'];
-        $response = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
-                'Content-Type' => 'application/json',
-                'X-Requested-With' => 'XMLHttpRequest'
-            ])->post($url . 'admin/delete/administrador/'.$id);
-        return redirect("/showAdmins");
-    }
-
+    
     public function ordenar($orden)
     {
         $url = $_ENV['API_URL'];
