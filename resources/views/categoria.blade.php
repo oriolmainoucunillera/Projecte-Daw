@@ -53,7 +53,7 @@
         </div>
         <hr>
         <div class="row">
-            @if (is_array($productos))
+            @if (is_array($productos ?? ''))
                 @foreach($productos as $producto)
                     <div class="col-12 col-md-6 col-lg-3 py-3">
                         <div class="row py-2">

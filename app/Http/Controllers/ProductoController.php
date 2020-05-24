@@ -52,8 +52,9 @@ class ProductoController
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'productes/oferta');
+            ])->get($url . 'getOfertes');
         $productos = $respuesta2->json();
+
 
         $respuesta3 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
