@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Http;
 
 class comandaController extends Controller
 {
-    public function realizarCompra() {
+    public function realizarCompra()
+    {
         $url = $_ENV['API_URL'];
+        $auth = $_ENV['AUTH_URL'];
 
         $respuesta2 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
@@ -24,7 +26,7 @@ class comandaController extends Controller
                 ->withHeaders([
                     'Content-Type' => 'application/json',
                     'X-Requested-With' => 'XMLHttpRequest'
-                ])->post($url .'afegirComanda', [
+                ])->post($auth . 'afegirComanda', [
                     'cistella_id' => $producto['cistella_id'],
                     'user_id' => $producto['user_id'],
                     'producte_id' => $producto['producte_id'],
@@ -39,7 +41,7 @@ class comandaController extends Controller
                 ->withHeaders([
                     'Content-Type' => 'application/json',
                     'X-Requested-With' => 'XMLHttpRequest'
-                ])->post($url . 'eliminarProductoCarrito/' . $producto['id']);
+                ])->post($auth . 'eliminarProductoCarrito/' . $producto['id']);
         }
 
         return redirect()->route('home')->with('message', 'Producte comanda realitzada');

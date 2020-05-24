@@ -16,14 +16,18 @@
                         <form action="/afegirCarrito" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <input type="number" class="form-control" id="cantidad" name="cantidad" value="1" placeholder="1" max="{{$producto['stock']}}">
-                                <input type="hidden" class="form-control" id="producte_id" name="producte_id" value="{{$producto['id']}}">
-                                <input type="hidden" class="form-control" id="preuOferta" name="preuOferta" value="{{$producto['preuOferta']}}">
+                                <input type="number" class="form-control" id="cantidad" name="cantidad" value="1"
+                                       placeholder="1" max="{{$producto['stock']}}">
+                                <input type="hidden" class="form-control" id="producte_id" name="producte_id"
+                                       value="{{$producto['id']}}">
+                                <input type="hidden" class="form-control" id="preuOferta" name="preuOferta"
+                                       value="{{$producto['preuOferta']}}">
                             </div>
                             @if($producto['stock'] > 0)
                                 <button type="submit" class="btn btn-outline-success">Añadir al carrito</button>
                             @else
-                                <button type="submit" class="btn btn-outline-success" disabled>Añadir al carrito</button>
+                                <button type="submit" class="btn btn-outline-success" disabled>Añadir al carrito
+                                </button>
                                 <p style="color: red">Producto no disponible</p>
                             @endif
                         </form>
@@ -31,7 +35,8 @@
                     @if($producto['oferta'] == 0)
                         <div class="col-8"><h2><b>{{ $producto['preuOferta'] }}€/ud</b></h2></div>
                     @else
-                        <div class="col-4" style="color: red"><h4><b><strike>{{ $producto['preu'] }}€/ud</strike></b></h4></div>
+                        <div class="col-4" style="color: red"><h4><b><strike>{{ $producto['preu'] }}€/ud</strike></b>
+                            </h4></div>
                         <div class="col-4"><h4><b>{{ $producto['preuOferta'] }}€/ud</b></h4></div>
                     @endif
                 </div>

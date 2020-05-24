@@ -58,7 +58,8 @@
                     <div class="col-12 col-md-6 col-lg-3 py-3">
                         <div class="row py-2">
                             <div class="col-8 col-lg-12">
-                                <img src="/images/{{ $producto['imatge'] }}" class="img-fluid pb-2" alt="Responsive image">
+                                <img src="/images/{{ $producto['imatge'] }}" class="img-fluid pb-2"
+                                     alt="Responsive image">
                             </div>
                             <div class="col-4 col-lg-12">
                                 <div class="row">
@@ -67,10 +68,12 @@
                                     @if($producto['oferta'] == 0)
                                         <div class="col-12"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
                                     @else
-                                        <div class="col-6" style="color: red"><h4><b><strike>{{ $producto['preu'] }}€</strike></b></h4></div>
+                                        <div class="col-6" style="color: red"><h4><b><strike>{{ $producto['preu'] }}
+                                                        €</strike></b></h4></div>
                                         <div class="col-6"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
                                     @endif
-                                    <div class="col-12"><a class="btn btn-outline-success my-2 my-sm-0" href="detalle{{ $producto['id'] }}">Detalle</a></div>
+                                    <div class="col-12"><a class="btn btn-outline-success my-2 my-sm-0"
+                                                           href="detalle{{ $producto['id'] }}">Detalle</a></div>
                                 </div>
                             </div>
                         </div>

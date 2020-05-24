@@ -6,13 +6,13 @@
 
         <div class="justify-content-center">
             @if (is_array($event ?? ''))
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $event['titol'] }}</h5>
-                            <p class="card-text">{{ $event['data_hora'] }}</p>
-                            <a href="#deleteModal" data-toggle="modal" class="btn btn-danger">Eliminar</a>
-                        </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $event['titol'] }}</h5>
+                        <p class="card-text">{{ $event['data_hora'] }}</p>
+                        <a href="#deleteModal" data-toggle="modal" class="btn btn-danger">Eliminar</a>
                     </div>
+                </div>
             @endif
 
             <div id="deleteModal" class="modal fade">
@@ -23,7 +23,8 @@
                             <p>Id: {{ $event['id'] }}</p>
                         </div>
                         <div class="modal-body">
-                            <form name="deleteEvento" id="deleteEvento" action="eventos_delete/{{ $event['id'] }}" method="post"
+                            <form name="deleteEvento" id="deleteEvento" action="eventos_delete/{{ $event['id'] }}"
+                                  method="post"
                                   enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-footer">

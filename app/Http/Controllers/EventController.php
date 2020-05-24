@@ -36,13 +36,13 @@ class EventController extends Controller
 
     public function evento_crear(Request $request)
     {
-        $url = $_ENV['API_URL'];
+        $auth = $_ENV['AUTH_URL'];
 
         $respuesta3 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->post($url . 'evento_crear', [
+            ])->post($auth . 'evento_crear', [
                 'titol' => $request->titol,
                 'data_hora' => $request->data_hora,
             ]);
@@ -51,17 +51,18 @@ class EventController extends Controller
 
     public function evento_eliminar($id)
     {
-        $url = $_ENV['API_URL'];
+        $auth = $_ENV['AUTH_URL'];
 
         $response = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->post($url . 'eventos_delete/'. $id);
+            ])->post($auth . 'eventos_delete/' . $id);
         return redirect()->route('eventos')->with('eliminar', 'Eliminat correctament.');
     }
 
-    public function eventoDetalle($id) {
+    public function eventoDetalle($id)
+    {
         $url = $_ENV['API_URL'];
 
         $respuesta3 = Http::withToken($_COOKIE["token"])

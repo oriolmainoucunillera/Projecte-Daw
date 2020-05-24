@@ -45,6 +45,7 @@ class CestaController extends Controller
     {
 
         $url = $_ENV['API_URL'];
+        $auth = $_ENV['AUTH_URL'];
 
         $nElementos = Http::withToken($_COOKIE["token"])
             ->withHeaders([
@@ -81,7 +82,7 @@ class CestaController extends Controller
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->post($url . 'afegirCarrito', [
+            ])->post($auth . 'afegirCarrito', [
                 'cistella_id' => $identificador,
                 'user_id' => $user_id,
                 'producte_id' => $request->producte_id,
@@ -95,24 +96,25 @@ class CestaController extends Controller
 
     public function borrarProducto($id)
     {
-        $url = $_ENV['API_URL'];
+        $auth = $_ENV['AUTH_URL'];
 
         $response = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->post($url . 'eliminarProductoCarrito/' . $id);
+            ])->post($auth . 'eliminarProductoCarrito/' . $id);
         return redirect()->route('cesta');
     }
 
-    public function cestaDetalle($id) {
+    public function cestaDetalle($id)
+    {
         $url = $_ENV['API_URL'];
 
         $respuesta2 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'cistells'.$id);
+            ])->get($url . 'cistells' . $id);
         $producto = $respuesta2->json();
         return view('cestaDetalle', compact('producto'));
     }

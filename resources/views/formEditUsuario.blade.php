@@ -17,7 +17,8 @@
                             <label for="usuari_id">Administrador id</label>
                             <select id="usuari_id" name="usuari_id" class="form-control">
                                 @if (is_array($admin ?? ''))
-                                        <option value="{{ $admin['usuari_id'] }}" id="usuari_id" name="usuari_id">{{ $admin['usuari_id'] }}</option>
+                                    <option value="{{ $admin['usuari_id'] }}" id="usuari_id"
+                                            name="usuari_id">{{ $admin['usuari_id'] }}</option>
                                 @endif
                             </select>
                         </div>

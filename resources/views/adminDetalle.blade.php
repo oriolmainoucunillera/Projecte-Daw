@@ -14,7 +14,8 @@
                     @if($producto['oferta'] == 0)
                         <div class="col-8"><h2><b>{{ $producto['preuOferta'] }}€/ud</b></h2></div>
                     @else
-                        <div class="col-4" style="color: red"><h4><b><strike>{{ $producto['preu'] }}€/ud</strike></b></h4></div>
+                        <div class="col-4" style="color: red"><h4><b><strike>{{ $producto['preu'] }}€/ud</strike></b>
+                            </h4></div>
                         <div class="col-4"><h4><b>{{ $producto['preuOferta'] }}€/ud</b></h4></div>
                     @endif
                 </div>
@@ -38,7 +39,8 @@
                         <p>Id: {{ $producto['id'] }}</p>
                     </div>
                     <div class="modal-body">
-                        <form name="deleteProducto" id="deleteProducto" action="deleteProducto/{{ $producto['id'] }}" method="post"
+                        <form name="deleteProducto" id="deleteProducto" action="deleteProducto/{{ $producto['id'] }}"
+                              method="post"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="modal-footer">

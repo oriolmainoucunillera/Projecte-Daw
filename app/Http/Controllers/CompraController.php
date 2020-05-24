@@ -14,12 +14,13 @@ class CompraController
         // $this->middleware('auth');
     }
 
-        public function cesta()
+    public function cesta()
     {
         return view('cesta');
     }
 
-    public function comprar(Request $request) {
+    public function comprar(Request $request)
+    {
         $url = $_ENV['API_URL'];
 
         $response = Http::withToken($_COOKIE["token"])
@@ -35,10 +36,10 @@ class CompraController
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->post($url . 'comprar', [
-            'cantidad' => $request->cantidad,
-            'producte_id' => $request->producte_id,
-            'user_id' => $user_id,
-        ]);
+                'cantidad' => $request->cantidad,
+                'producte_id' => $request->producte_id,
+                'user_id' => $user_id,
+            ]);
 
 
         return redirect()->route('home')->with('message', 'Compra realitzada correctament');

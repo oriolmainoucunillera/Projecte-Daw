@@ -15,7 +15,7 @@
                         @csrf
                         <div class="form-group">
                             <label>Tasca</label>
-                            <input type="text"  class="form-control" name="titol">
+                            <input type="text" class="form-control" name="titol">
                         </div>
                         <div class="form-group">
                             <label>Data</label>

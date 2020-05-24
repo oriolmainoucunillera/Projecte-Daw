@@ -14,24 +14,24 @@
 
                 <div class="row">
                     @if(is_array($admins ?? ''))
-                    @foreach($admins as $admin)
-                        <div class="col-12 col-md-6 col-lg-6 p-3">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="row">
-                                        <label class="col-4">Id del usuario</label>
-                                        <div class="col-3"><h2>{{ $admin['usuari_id'] }}</h2></div>
-                                    </div>
-                                    <div class="row p-3">
-                                        <a class="btn btn-warning my-2 my-sm-0 col-3 p-2"
-                                           href="formEditUsuario{{ $admin['id'] }}">Editar</a>
-                                        <a class="btn btn-danger my-2 my-sm-0 col-3 p-2" href="#deleteModal"
-                                           data-toggle="modal">Borrar</a>
+                        @foreach($admins as $admin)
+                            <div class="col-12 col-md-6 col-lg-6 p-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <label class="col-4">Id del usuario</label>
+                                            <div class="col-3"><h2>{{ $admin['usuari_id'] }}</h2></div>
+                                        </div>
+                                        <div class="row p-3">
+                                            <a class="btn btn-warning my-2 my-sm-0 col-3 p-2"
+                                               href="formEditUsuario{{ $admin['id'] }}">Editar</a>
+                                            <a class="btn btn-danger my-2 my-sm-0 col-3 p-2" href="#deleteModal"
+                                               data-toggle="modal">Borrar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
                     @endif
 
                     <div id="deleteModal" class="modal fade">

@@ -18,7 +18,8 @@
                             <select id="id" name="id" class="form-control">
                                 @if (is_array($usuarios))
                                     @foreach($usuarios as $usuario)
-                                        <option value="{{ $usuario['id'] }}" id="id" name="id">{{ $usuario['email'] }}</option>
+                                        <option value="{{ $usuario['id'] }}" id="id"
+                                                name="id">{{ $usuario['email'] }}</option>
                                     @endforeach
                                 @endif
 

@@ -31,7 +31,8 @@
                             <select id="marca_id" name="marca_id" class="form-control">
                                 @if (is_array($marcas))
                                     @foreach($marcas as $marca)
-                                        <option value="{{ $marca['id'] }}" id="marca_id" name="marca_id">{{ $marca['nom'] }}</option>
+                                        <option value="{{ $marca['id'] }}" id="marca_id"
+                                                name="marca_id">{{ $marca['nom'] }}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -41,7 +42,8 @@
                             <select id="categoria_id" name="categoria_id" class="form-control">
                                 @if (is_array($categorias))
                                     @foreach($categorias as $categoria)
-                                        <option value="{{ $categoria['id'] }}" id="categoria_id" name="categoria_id">{{ $categoria['nom'] }}</option>
+                                        <option value="{{ $categoria['id'] }}" id="categoria_id"
+                                                name="categoria_id">{{ $categoria['nom'] }}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -51,7 +53,8 @@
                     <div class="form-group row">
                         <div class="col-12 col-md-6">
                             <label for="descripcio_curta">Descripcion corta</label>
-                            <input class="form-control" type="text" id="descripcio_curta" name="descripcio_curta" required>
+                            <input class="form-control" type="text" id="descripcio_curta" name="descripcio_curta"
+                                   required>
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="stock">Stock</label>
@@ -74,7 +77,8 @@
                             <select id="color_id" name="color_id" class="form-control">
                                 @if (is_array($colors))
                                     @foreach($colors as $color)
-                                        <option value="{{ $color['id'] }}" id="color_id" name="color_id">{{ $color['nom'] }}</option>
+                                        <option value="{{ $color['id'] }}" id="color_id"
+                                                name="color_id">{{ $color['nom'] }}</option>
                                     @endforeach
                                 @endif
                             </select>

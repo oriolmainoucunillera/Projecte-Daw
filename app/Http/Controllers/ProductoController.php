@@ -2,6 +2,7 @@
 
 
 namespace App\Http\Controllers;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -41,7 +42,7 @@ class ProductoController
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
         $colors = $respuesta5->json();
-        return view('categoria', compact('productos','marcas', 'colors'));
+        return view('categoria', compact('productos', 'marcas', 'colors'));
     }
 
     public function oferta()
@@ -96,7 +97,7 @@ class ProductoController
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
         $colors = $respuesta5->json();
-        return view('categoria', compact('productos','marcas', 'colors'));
+        return view('categoria', compact('productos', 'marcas', 'colors'));
     }
 
     public function esquis()
@@ -123,7 +124,7 @@ class ProductoController
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
         $colors = $respuesta5->json();
-        return view('categoria', compact('productos','marcas', 'colors'));
+        return view('categoria', compact('productos', 'marcas', 'colors'));
     }
 
     public function botas()
@@ -150,7 +151,7 @@ class ProductoController
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
         $colors = $respuesta5->json();
-        return view('categoria', compact('productos','marcas', 'colors'));
+        return view('categoria', compact('productos', 'marcas', 'colors'));
     }
 
     public function ropa()
@@ -177,7 +178,7 @@ class ProductoController
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
         $colors = $respuesta5->json();
-        return view('categoria', compact('productos','marcas', 'colors'));
+        return view('categoria', compact('productos', 'marcas', 'colors'));
     }
 
     public function detalle($id)
@@ -188,19 +189,20 @@ class ProductoController
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'producte'.$id);
+            ])->get($url . 'producte' . $id);
         $producto = $respuesta2->json();
 
         return view('detalle', compact('producto'));
     }
 
-    public function ordenar($orden) {
+    public function ordenar($orden)
+    {
         $url = $_ENV['API_URL'];
         $respuesta2 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'ordenar/'.$orden);
+            ])->get($url . 'ordenar/' . $orden);
         $productos = $respuesta2->json();
 
         $respuesta3 = Http::withToken($_COOKIE["token"])
@@ -219,14 +221,15 @@ class ProductoController
         return view('categoria', compact('productos', 'marcas', 'colors'));
     }
 
-    public function filtroMarca($marca_id) {
+    public function filtroMarca($marca_id)
+    {
         $url = $_ENV['API_URL'];
 
         $respuesta2 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'marca'.$marca_id);
+            ])->get($url . 'marca' . $marca_id);
         $productos = $respuesta2->json();
 
         $respuesta3 = Http::withToken($_COOKIE["token"])
@@ -245,14 +248,15 @@ class ProductoController
         return view('categoria', compact('productos', 'marcas', 'colors'));
     }
 
-    public function filtroColor($color_id) {
+    public function filtroColor($color_id)
+    {
         $url = $_ENV['API_URL'];
 
         $respuesta2 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'color'.$color_id);
+            ])->get($url . 'color' . $color_id);
         $productos = $respuesta2->json();
 
         $respuesta3 = Http::withToken($_COOKIE["token"])
