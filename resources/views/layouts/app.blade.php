@@ -28,8 +28,10 @@
 
 <body>
 <div id="app">
+
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
+
             <a class="navbar-brand d-flex" href="{{ url('/') }}">
                 <div><img src="logo1.png" class="logo"></div>
             </a>
@@ -137,6 +139,13 @@
                                                                        alt="twitter" width="80px"></a>
         </nav>
     </nav>
+
+    <!-- código HTMl botón subir (top)-->
+    <a href="#" id="js_up" class="boton-subir">
+        <!-- link del icono http://fontawesome.io/icon/rocket/ <i class="fa fa-rocket" aria-hidden="true"></i>-->
+        <img aria-hidden="true" src="flecha.png" width="40px">
+    </a>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -149,6 +158,28 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<!-- script para que funcione al 100% el botón ir arriba -->
+<script>
+    //invocamos al objeto (window) y a su método (scroll), solo se ejecutara si el usuario hace scroll en la página
+    $(window).scroll(function(){
+        if($(this).scrollTop() > 300){ //condición a cumplirse cuando el usuario aya bajado 301px a más.
+            $("#js_up").slideDown(300); //se muestra el botón en 300 mili segundos
+        }else{ // si no
+            $("#js_up").slideUp(300); //se oculta el botón en 300 mili segundos
+        }
+    });
+
+    //creamos una función accediendo a la etiqueta i en su evento click
+    $("#js_up i").on('click', function (e) {
+        e.preventDefault(); //evita que se ejecute el tag ancla (<a href="#">valor</a>).
+        $("body,html").animate({ // aplicamos la función animate a los tags body y html
+            scrollTop: 0 //al colocar el valor 0 a scrollTop me volverá a la parte inicial de la página
+        },700); //el valor 700 indica que lo ara en 700 mili segundos
+        return false; //rompe el bucle
+    });
+</script>
+
 </body>
 </html>
 

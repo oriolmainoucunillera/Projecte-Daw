@@ -55,7 +55,19 @@ class HomeController extends Controller
         ])->get($url . 'buscador/' . $nom);
         $productos = $respuesta2->json();
 
-        return view('categoria', compact('productos'));
+        $respuesta3 = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'X-Requested-With' => 'XMLHttpRequest'
+        ])->get($url . 'marca/all');
+        $marcas = $respuesta3->json();
+
+        $respuesta5 = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'X-Requested-With' => 'XMLHttpRequest'
+        ])->get($url . 'color/all');
+        $colors = $respuesta5->json();
+
+        return view('categoria', compact('productos', 'marcas', 'colors'));
     }
 
 }

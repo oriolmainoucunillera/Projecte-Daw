@@ -5,7 +5,7 @@
         @csrf
         <div class="row">
             <div class="col-12 col-sm-6">
-                <img src="/images/{{ $producto['imatge'] }}" class="img-fluid pb-2" alt="Responsive image">
+                <img src="/images/{{ $producto['imatge'] }}" class="img-fluid pb-2 zoom" alt="Responsive image">
             </div>
             <div class="col-12 col-sm-6">
                 <h3>{{ $producto['nom'] }}</h3>
@@ -41,11 +41,9 @@
                     @endif
                 </div>
             </div>
-            <div class="row p-3">
                 <div class="col-12">
-                    <a href="javascript:history.back()" class="btn btn-primary">Volver</a>
+                    <a href="javascript:history.back()" class="btn btn-primary float-right">Volver</a>
                 </div>
-            </div>
         </div>
 
     </div>

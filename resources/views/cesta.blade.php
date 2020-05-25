@@ -34,14 +34,13 @@
             <div class="col-4 col-md-6 col-lg-1"><h2><b>{{$preuTotal}}€</b></h2></div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
                 <a href="#addComanda" data-toggle="modal">
                     <button class="btn btn-success">Comprar</button>
                 </a>
+                <a href="javascript:history.back()" class="btn btn-primary float-right">Volver</a>
             </div>
-            <div class="col-6">
-                <a href="javascript:history.back()" class="btn btn-primary">Volver</a>
-            </div>
+
         </div>
             <div id="addComanda" class="modal fade">
                 <div class="modal-dialog">
