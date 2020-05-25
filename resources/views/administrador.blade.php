@@ -14,7 +14,7 @@
                 <a href="formAddProducto" class="btn btn-secondary">Añadir Producto</a>
             </div>
         </div>
-
+{{--
         <div class="row">
             <div class="dropdown p-3">
                 <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -57,6 +57,7 @@
                 </div>
             </div>
         </div>
+--}}
         <hr>
         <div class="row">
             @if (is_array($productos ?? ''))

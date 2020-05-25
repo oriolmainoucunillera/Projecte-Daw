@@ -12,18 +12,18 @@ class EventController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+         $this->middleware('auth');
     }
 
     public function index()
     {
-        $url = $_ENV['API_URL'];
+        $auth = $_ENV['AUTH_URL'];
 
         $respuesta3 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'eventos');
+            ])->get($auth . 'eventos');
         $events = $respuesta3->json();
 
         return view('events_home', compact('events'));

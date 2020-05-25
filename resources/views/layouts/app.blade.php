@@ -125,7 +125,6 @@
         @yield('content')
     </main>
 
-    <hr>
     <nav class="footer">
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm justify-content-center">
             <a href="https://www.instagram.com" target="_blank"><img src="insta.png" class="img-fluid p-3"

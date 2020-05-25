@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Http;
 use mysql_xdevapi\Session;
 
 
-class ProductoController
+class ProductoController extends Controller
 {
 
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
 
     }
 
@@ -22,22 +22,19 @@ class ProductoController
     {
         $url = $_ENV['API_URL'];
 
-        $respuesta2 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta2 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'productes/all');
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta3 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta5 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
@@ -49,23 +46,20 @@ class ProductoController
     {
         $url = $_ENV['API_URL'];
 
-        $respuesta2 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta2 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'getOfertes');
         $productos = $respuesta2->json();
 
 
-        $respuesta3 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta3 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta5 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
@@ -77,22 +71,19 @@ class ProductoController
     {
         $url = $_ENV['API_URL'];
 
-        $respuesta2 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta2 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'productes/categoria/1');
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta3 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta5 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
@@ -104,22 +95,19 @@ class ProductoController
     {
         $url = $_ENV['API_URL'];
 
-        $respuesta2 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta2 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'productes/categoria/2');
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta3 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta5 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
@@ -131,22 +119,19 @@ class ProductoController
     {
         $url = $_ENV['API_URL'];
 
-        $respuesta2 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta2 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'productes/categoria/3');
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta3 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta5 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
@@ -158,22 +143,19 @@ class ProductoController
     {
         $url = $_ENV['API_URL'];
 
-        $respuesta2 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta2 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'productes/categoria/4');
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta3 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta5 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
@@ -185,8 +167,7 @@ class ProductoController
     {
         $url = $_ENV['API_URL'];
 
-        $respuesta2 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta2 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'producte' . $id);
@@ -198,22 +179,19 @@ class ProductoController
     public function ordenar($orden)
     {
         $url = $_ENV['API_URL'];
-        $respuesta2 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta2 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'ordenar/' . $orden);
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta3 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta5 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
@@ -225,22 +203,19 @@ class ProductoController
     {
         $url = $_ENV['API_URL'];
 
-        $respuesta2 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta2 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'marca' . $marca_id);
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta3 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta5 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');
@@ -252,22 +227,19 @@ class ProductoController
     {
         $url = $_ENV['API_URL'];
 
-        $respuesta2 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta2 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color' . $color_id);
         $productos = $respuesta2->json();
 
-        $respuesta3 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta3 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'marca/all');
         $marcas = $respuesta3->json();
 
-        $respuesta5 = Http::withToken($_COOKIE["token"])
-            ->withHeaders([
+        $respuesta5 = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
             ])->get($url . 'color/all');

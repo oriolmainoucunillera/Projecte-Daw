@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <h3>
                         Afegir tasca
-                        <a class="float-right btn btn-primary" href="{{route('eventos')}}">Tornar</a>
+                        <a href="javascript:history.back()" class="btn btn-primary float-right">Volver</a>
                     </h3>
                 </div>
                 <div class="card-body">

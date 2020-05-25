@@ -12,25 +12,25 @@ class CestaController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+         $this->middleware('auth');
     }
 
     public function getAll()
     {
-        $url = $_ENV['API_URL'];
+        $auth = $_ENV['AUTH_URL'];
 
         $respuesta2 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'cistells/all');
+            ])->get($auth . 'cistells/all');
         $productos = $respuesta2->json();
 
         $preuTotal = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'preuCistella');
+            ])->get($auth . 'preuCistella');
 
         return view('cesta', compact('productos', 'preuTotal'));
     }
@@ -44,14 +44,13 @@ class CestaController extends Controller
     public function afegirCarrito(Request $request)
     {
 
-        $url = $_ENV['API_URL'];
         $auth = $_ENV['AUTH_URL'];
 
         $nElementos = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'elementsCistella');
+            ])->get($auth . 'elementsCistella');
         $nElementos2 = $nElementos->json();
 
         $identificador = null;
@@ -63,7 +62,7 @@ class CestaController extends Controller
                 ->withHeaders([
                     'Content-Type' => 'application/json',
                     'X-Requested-With' => 'XMLHttpRequest'
-                ])->get($url . 'getCistellaId');
+                ])->get($auth . 'getCistellaId');
             $identificador = $consulta->json();
         }
 

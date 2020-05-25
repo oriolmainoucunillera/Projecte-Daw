@@ -7,22 +7,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 
-class AdminController
+class AdminController extends Controller
 {
 
     public function __construct()
     {
-        // $this->middleware('auth');
+         $this->middleware('auth');
     }
 
     public function administrador()
     {
         $url = $_ENV['API_URL'];
+        $auth = $_ENV['AUTH_URL'];
+
         $respuesta2 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'admin/allProductes');
+            ])->get($auth . 'admin/allProductes');
         $productos = $respuesta2->json();
 
         $respuesta3 = Http::withHeaders([
@@ -58,8 +60,7 @@ class AdminController
     {
         $url = $_ENV['API_URL'];
 
-        $respuesta2 = Http::
-        withToken($_COOKIE["token"])
+        $respuesta2 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'

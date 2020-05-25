@@ -9,16 +9,20 @@ use Illuminate\Support\Facades\Http;
 
 class comandaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function realizarCompra()
     {
-        $url = $_ENV['API_URL'];
         $auth = $_ENV['AUTH_URL'];
 
         $respuesta2 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'cistells/all');
+            ])->get($auth . 'cistells/all');
         $productos = $respuesta2->json();
 
         foreach ($productos as $producto) {

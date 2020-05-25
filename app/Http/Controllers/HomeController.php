@@ -22,6 +22,7 @@ class HomeController extends Controller
     public function index()
     {
         $url = $_ENV['API_URL'];
+
         $respuesta2 = Http::withHeaders([
             'Content-Type' => 'application/json',
             'X-Requested-With' => 'XMLHttpRequest'
@@ -45,8 +46,9 @@ class HomeController extends Controller
 
     public function buscador(Request $request)
     {
-        $nom = $request['buscador'];
         $url = $_ENV['API_URL'];
+
+        $nom = $request['buscador'];
         $respuesta2 = Http::withHeaders([
             'Content-Type' => 'application/json',
             'X-Requested-With' => 'XMLHttpRequest'
