@@ -52,7 +52,9 @@ class LoginController extends Controller
         }
 */
         if ($this->attemptLogin($request)) {
-            $response = Http::post('http://127.0.0.1:8000/api/auth/login', [
+            $auth = $_ENV['AUTH_URL'];
+
+            $response = Http::post($auth . 'login', [
                 'email' => $request->email,
                 'password' => $request->password
             ]);

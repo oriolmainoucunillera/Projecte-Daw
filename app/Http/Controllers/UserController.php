@@ -22,8 +22,9 @@ class UserController extends Controller
 
     public function api_login(Request $request)
     {
+        $auth = $_ENV['AUTH_URL'];
 
-        $response = Http::post('http://127.0.0.1:8000/api/auth/login', [
+        $response = Http::post( $auth . 'login', [
             'email' => $request->email,
             'password' => $request->password
         ]);
@@ -40,8 +41,9 @@ class UserController extends Controller
 
     public function api_register(Request $request)
     {
+        $auth = $_ENV['AUTH_URL'];
 
-        $response = Http::post('http://127.0.0.1:8000/api/auth/signup', [
+        $response = Http::post( $auth . 'signup', [
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
@@ -52,21 +54,24 @@ class UserController extends Controller
 
     public function api_logout()
     {
+        $auth = $_ENV['AUTH_URL'];
 
         $response = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get('http://127.0.0.1:8000/api/auth/logout');
+            ])->get($auth . 'logout');
     }
 
     public function api_user()
     {
+        $auth = $_ENV['AUTH_URL'];
+
         $response = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get('http://127.0.0.1:8000/api/auth/user');
+            ])->get($auth . 'user');
         $user = $response->json();
         return $user;
     }

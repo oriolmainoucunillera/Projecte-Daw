@@ -18,11 +18,19 @@ class comandaController extends Controller
     {
         $auth = $_ENV['AUTH_URL'];
 
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($auth . 'user');
+        $user = $response->json();
+        $user_id = $user['id'];
+
         $respuesta2 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($auth . 'cistells/all');
+            ])->get($auth . 'cistella' . $user_id);
         $productos = $respuesta2->json();
 
         foreach ($productos as $producto) {
