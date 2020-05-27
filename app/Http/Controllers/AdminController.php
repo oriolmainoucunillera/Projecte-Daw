@@ -167,6 +167,7 @@ class AdminController extends Controller
 
         $preuOferta = $request->preu - ($request->preu * ($request->oferta / 100));
 
+
         $response = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',

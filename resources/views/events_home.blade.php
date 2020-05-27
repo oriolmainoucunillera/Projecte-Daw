@@ -19,10 +19,8 @@
                 @endforeach
             @endif
 
-            <div class="row p-3">
-                <div class="col-12">
+            <div class="row p-3 float-right">
                     <a href="javascript:history.back()" class="btn btn-primary">Volver</a>
-                </div>
             </div>
 
         </div>

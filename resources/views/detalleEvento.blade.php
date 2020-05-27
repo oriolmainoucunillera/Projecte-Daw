@@ -20,7 +20,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">¿Borrar evento?</h4>
-                            <p>Id: {{ $event['id'] }}</p>
                         </div>
                         <div class="modal-body">
                             <form name="deleteEvento" id="deleteEvento" action="eventos_delete/{{ $event['id'] }}"

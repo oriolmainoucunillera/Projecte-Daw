@@ -63,13 +63,13 @@ class EventController extends Controller
 
     public function eventoDetalle($id)
     {
-        $url = $_ENV['API_URL'];
+        $auth = $_ENV['AUTH_URL'];
 
         $respuesta3 = Http::withToken($_COOKIE["token"])
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'X-Requested-With' => 'XMLHttpRequest'
-            ])->get($url . 'eventoDetalle' . $id);
+            ])->get($auth . 'eventoDetalle' . $id);
         $event = $respuesta3->json();
 
         return view('detalleEvento', compact('event'));

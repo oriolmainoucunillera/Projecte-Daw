@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-12 col-md-6"><h2>Administradors</h2></div>
+            <div class="col-12 col-md-4"><h2>Administradors</h2></div>
             <div class="p-3">
                 <a href="eventos" class="btn btn-secondary">Eventos</a>
             </div>
@@ -12,6 +12,9 @@
             </div>
             <div class="p-3">
                 <a href="formAddProducto" class="btn btn-secondary">Añadir Producto</a>
+            </div>
+            <div class="p-3">
+                <a href="allComandes" class="btn btn-secondary">Comandes</a>
             </div>
         </div>
 {{--
@@ -75,8 +78,8 @@
                                     @if($producto['oferta'] == 0)
                                         <div class="col-12"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
                                     @else
-                                        <div class="col-6" style="color: red"><h4><b><strike>{{ $producto['preu'] }}
-                                                        €</strike></b></h4></div>
+                                        <div class="col-6" style="color: red"><h5><b><strike>{{ $producto['preu'] }}
+                                                        €</strike></b></h5></div>
                                         <div class="col-6"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
                                     @endif
                                 </div>

@@ -124,3 +124,5 @@ Route::get('/cestaDetalle{id}', 'CestaController@cestaDetalle')->name('cestaDeta
 /*ComandaController*/
 //Realizar compra
 Route::post('/realizarCompra', 'ComandaController@realizarCompra')->name('realizarCompra');
+//Mostrar todas las compras
+Route::get('/allComandes', 'ComandaController@allComandes')->name('allComandes');

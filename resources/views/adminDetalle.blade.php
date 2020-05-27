@@ -34,7 +34,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">¿Borrar producto?</h4>
-                        <p>Id: {{ $producto['id'] }}</p>
                     </div>
                     <div class="modal-body">
                         <form name="deleteProducto" id="deleteProducto" action="deleteProducto/{{ $producto['id'] }}"

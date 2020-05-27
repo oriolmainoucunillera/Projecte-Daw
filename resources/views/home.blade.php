@@ -21,9 +21,9 @@
                                     @if($producto['oferta'] == 0)
                                         <div class="col-12"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
                                     @else
-                                        <div class="col-6" style="color: red"><h4><b><strike>{{ $producto['preu'] }}
-                                                        €</strike></b></h4></div>
-                                        <div class="col-6"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
+                                        <div class="col-12 col-md-6" style="color: red"><h5><b><strike>{{ $producto['preu'] }}
+                                                        €</strike></b></h5></div>
+                                        <div class=" col-12 col-md-6"><h4><b>{{ $producto['preuOferta'] }}€</b></h4></div>
                                     @endif
                                     <div class="col-12"><a class="btn btn-outline-success my-2 my-sm-0"
                                                            href="detalle{{ $producto['id'] }}">Detalle</a></div>

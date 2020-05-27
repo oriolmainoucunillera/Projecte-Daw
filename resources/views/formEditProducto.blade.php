@@ -28,9 +28,9 @@
 
                     <div class="form-group row">
                         <div class="col-12 col-md-6">
-                            <label for="artista">Marca del producto</label>
+                            <label for="marca_id">Marca del producto</label>
                             <select id="marca_id" name="marca_id" class="form-control">
-                                @if (is_array($marcas))
+                                @if (is_array($marcas ?? ''))
                                     @foreach($marcas as $marca)
                                         <option value="{{ $producto['marca_id'] }}" id="marca_id"
                                                 name="marca_id">{{ $marca['nom'] }}</option>
@@ -41,7 +41,7 @@
                         <div class="col-12 col-md-6">
                             <label for="categoria_id">Categoria</label>
                             <select id="categoria_id" name="categoria_id" class="form-control">
-                                @if (is_array($categorias))
+                                @if (is_array($categorias ?? ''))
                                     @foreach($categorias as $categoria)
                                         <option value="{{ $producto['categoria_id'] }}" id="categoria_id"
                                                 name="categoria_id">{{ $categoria['nom'] }}</option>
@@ -78,7 +78,7 @@
                         <div class="col-12 col-md-4">
                             <label for="color_id">Color</label>
                             <select id="color_id" name="color_id" class="form-control">
-                                @if (is_array($colors))
+                                @if (is_array($colors ?? ''))
                                     @foreach($colors as $color)
                                         <option value="{{ $producto['color_id'] }}" id="color_id"
                                                 name="color_id">{{ $color['nom'] }}</option>

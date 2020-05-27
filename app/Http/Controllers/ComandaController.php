@@ -58,6 +58,18 @@ class comandaController extends Controller
 
         return redirect()->route('home')->with('message', 'Producte comanda realitzada');
 
+    }
 
+    public function allComandes() {
+        $auth = $_ENV['AUTH_URL'];
+
+        $response = Http::withToken($_COOKIE["token"])
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ])->get($auth . 'allComandes');
+        $comandes = $response->json();
+
+        return view('comandes', compact('comandes'));
     }
 }
